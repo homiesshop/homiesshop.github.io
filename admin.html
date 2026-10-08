@@ -9,10 +9,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=ac64a26">
+    <style>
+      [hidden] { display: none !important; }
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="config.js" defer></script>
-    <script src="admin.js" defer></script>
+    <script src="config.js?v=0bc6dcc" defer></script>
+    <script src="admin.js?v=ac64a26" defer></script>
   </head>
   <body>
     <header class="site-header">
@@ -30,7 +33,7 @@
         <p>Set the public project URL and anon/publishable key in <code>config.js</code>, then run <code>supabase/setup.sql</code>. Never add a service-role key here.</p>
       </section>
 
-      <form class="admin-login" id="admin-login" hidden>
+      <form class="admin-login" id="admin-login">
         <p class="admin-intro">Sign in with the email and password of the Supabase Auth user explicitly added to the SQL <code>admin_users</code> allowlist. Other signed-in users cannot read or change orders.</p>
         <label class="checkout-field">Admin email<input id="admin-email" type="email" autocomplete="username" required></label>
         <label class="checkout-field">Password<input id="admin-password" type="password" autocomplete="current-password" required></label>
@@ -44,7 +47,7 @@
         </div>
         <div class="admin-orders-list" id="admin-orders-list"></div>
       </section>
-      <p class="admin-status" id="admin-status" role="status" aria-live="polite"></p>
+      <p class="admin-status" id="admin-status" role="status" aria-live="polite">Enter the email and password for the allowlisted shop owner account.</p>
     </main>
     <footer class="site-footer">
       <a class="wordmark" href="index.html">Homiesshop<span>®</span></a>
