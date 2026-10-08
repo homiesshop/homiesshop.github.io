@@ -4,7 +4,7 @@
 window.HOMIESSHOP_CONFIG = {
   checkoutMode: "database", // or "messenger"
   supabaseUrl: "https://ievhdpradeetrsxcnokv.supabase.co",
-  supabaseAnonKey: "",
+  supabaseAnonKey: "sb\_publishable\_sWnor-Qm6uWXZKpMmF3xGw\_Y8GEzs5U",
   privacyPolicyUrl: "",
   usdPerEur: 1.08,
   telegram: "",
