@@ -1,3 +1,4 @@
+(() => {
 "use strict";
 
 const settings = window.HOMIESSHOP_CONFIG || {};
@@ -235,3 +236,4 @@ document.querySelector("#refresh-orders").addEventListener("click", async () => 
     showStatus(`Could not load orders: ${error.message}`, "error");
   }
 });
+})();

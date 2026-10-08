@@ -65,7 +65,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="config.js?v=0bc6dcc"></script>
     <script
-      src="admin.js?v=admin-submit-v4"
+      src="admin.js?v=admin-submit-v5"
       onload="if (typeof window.homiesshopAdminSubmit !== 'function') { const status = document.querySelector('#admin-status'); status.textContent = window.__homiesshopAdminScriptError ? `Dashboard script error: ${window.__homiesshopAdminScriptError}` : 'Dashboard script loaded without its sign-in handler. Reload this page or contact the shop owner.'; status.className = 'admin-status is-error'; }"
       onerror="document.querySelector('#admin-status').textContent = 'Dashboard script failed to load. Check your connection and reload this page.'; document.querySelector('#admin-status').className = 'admin-status is-error';"
     ></script>
