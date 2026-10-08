@@ -19,12 +19,10 @@ const STORE_CONFIG = {
 
 Сайт не требует сборки, сервера, базы данных или платных сервисов.
 
-1. Оставьте имя репозитория `archive-store` и опубликуйте файлы `index.html`, `styles.css`, `app.js` и `README.md` в нём.
-2. В настройках репозитория откройте **Settings → Pages**.
+1. Репозиторий сайта: [`homiesshop/homiesshop.github.io`](https://github.com/homiesshop/homiesshop.github.io). Файлы сайта лежат в корне ветки `main`.
+2. Чтобы включить или проверить публикацию, откройте **Settings → Pages** в репозитории.
 3. В разделе **Build and deployment** выберите **Deploy from a branch**, ветку `main` и папку `/ (root)`, затем нажмите **Save**.
-4. Дождитесь публикации. Если ваш новый GitHub username — `homiesshop`, адрес сайта для репозитория `archive-store` будет **https://homiesshop.github.io/archive-store/**. В настройках **Settings → Pages** GitHub также покажет активный URL; именно эту ссылку можно отправлять покупателям.
-
-Чтобы получить короткий адрес **https://homiesshop.github.io/**, переименуйте репозиторий `archive-store` в `homiesshop.github.io` в **Settings → General → Repository name**. Это действие не выполняется из этого проекта; после переименования проверьте адрес и источник публикации в **Settings → Pages**. Пока имя репозитория не менялось, используйте URL с `/archive-store/`.
+4. Дождитесь завершения сборки. Адрес магазина: **https://homiesshop.github.io/**. Проверяйте результат по ссылке, показанной GitHub в настройках Pages.
 
 На GitHub Free публикация через Pages бесплатна для публичных репозиториев.
 
