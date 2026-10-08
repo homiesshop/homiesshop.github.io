@@ -9,13 +9,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=ac64a26">
+    <link rel="stylesheet" href="styles.css?v=admin-status-v1">
     <style>
       [hidden] { display: none !important; }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="config.js?v=0bc6dcc" defer></script>
-    <script src="admin.js?v=ac64a26" defer></script>
+    <script src="admin.js?v=admin-status-v1" defer></script>
   </head>
   <body>
     <header class="site-header">
@@ -27,6 +27,8 @@
         <div><p class="eyebrow">Private area</p><h1>Order dashboard</h1></div>
         <button class="button button-light" type="button" id="sign-out" hidden>Sign out</button>
       </div>
+
+      <p class="admin-status" id="admin-status" role="status" aria-live="polite">Enter the email and password for the allowlisted shop owner account.</p>
 
       <section class="admin-setup-notice" id="admin-setup-notice" hidden>
         <h2>Supabase is not connected yet</h2>
@@ -47,7 +49,6 @@
         </div>
         <div class="admin-orders-list" id="admin-orders-list"></div>
       </section>
-      <p class="admin-status" id="admin-status" role="status" aria-live="polite">Enter the email and password for the allowlisted shop owner account.</p>
     </main>
     <footer class="site-footer">
       <a class="wordmark" href="index.html">Homiesshop<span>®</span></a>

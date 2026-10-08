@@ -181,6 +181,7 @@ dialog::backdrop { background: rgba(20,21,18,.58); backdrop-filter: blur(2px); }
 .submit-order { width: 100%; margin-top: 8px; }
 .submit-order:disabled, .admin-login button:disabled { cursor: not-allowed; opacity: .45; }
 .form-status, .admin-status { min-height: 15px; margin: 10px 0 0; color: var(--muted); font-size: 10px; line-height: 1.6; }
+.admin-status { padding: 12px 14px; border: 1px solid var(--line); background: #20221e; font-size: 12px; }
 .form-status.is-warning, .admin-status.is-warning { color: #e4be82; }
 .form-status.is-error, .admin-status.is-error { color: #e99a85; }
 .form-status.is-success, .admin-status.is-success { color: #a9d0a2; }

@@ -121,7 +121,7 @@ async function checkAdminAndLoadOrders() {
   if (membership.error) throw membership.error;
   if (!membership.data) {
     showStatus("This account is not on the admin allowlist. It cannot access orders.", "error");
-    return;
+    return false;
   }
 
   const result = await supabase.from("orders").select("*").order("created_at", { ascending: false }).limit(100);
@@ -129,6 +129,7 @@ async function checkAdminAndLoadOrders() {
   renderOrders(result.data || []);
   ordersSection.hidden = false;
   showStatus(`Loaded ${result.data.length} order${result.data.length === 1 ? "" : "s"}.`, "success");
+  return true;
 }
 
 async function updateOrderStatus(orderId, nextStatus, button) {
@@ -158,19 +159,25 @@ async function syncSession() {
     const result = await supabase.auth.getSession();
     if (result.error) throw result.error;
     activeUser = result.data.session?.user || null;
-    loginForm.hidden = Boolean(activeUser);
     ordersSection.hidden = true;
     signOutButton.hidden = !activeUser;
-    if (activeUser) await checkAdminAndLoadOrders();
-    else showStatus("Sign in with the allowlisted admin account to view orders.");
+    if (activeUser) {
+      loginForm.hidden = !(await checkAdminAndLoadOrders());
+    } else {
+      loginForm.hidden = false;
+      showStatus("Sign in with the allowlisted admin account to view orders.");
+    }
   } catch (error) {
     console.error("Could not check admin session.", error);
+    loginForm.hidden = false;
+    signOutButton.hidden = !activeUser;
     showStatus(`Could not connect to Supabase: ${error.message}`, "error");
   }
 }
 
 if (!supabase) {
   setupNotice.hidden = false;
+  loginForm.hidden = true;
   showStatus("The order dashboard is unavailable until config.js has a valid Supabase project URL and anon/publishable key.", "warning");
 } else {
   loginForm.hidden = false;
@@ -190,11 +197,13 @@ loginForm.addEventListener("submit", async (event) => {
     if (result.error) throw result.error;
     activeUser = result.data.user;
     document.querySelector("#admin-password").value = "";
-    loginForm.hidden = true;
     signOutButton.hidden = false;
-    await checkAdminAndLoadOrders();
+    const hasAccess = await checkAdminAndLoadOrders();
+    loginForm.hidden = hasAccess;
   } catch (error) {
     console.error("Admin sign-in failed.", error);
+    loginForm.hidden = false;
+    signOutButton.hidden = !activeUser;
     showStatus(`Sign-in failed or this user is not allowed to view orders: ${error.message}`, "error");
   } finally {
     loginButton.disabled = false;
