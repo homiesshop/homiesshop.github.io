@@ -1,19 +1,22 @@
 # Homiesshop — демо-магазин одежды
 
-Адаптивный статический интернет-магазин на русском языке: каталог с поиском, фильтрами и сортировкой, карточки товаров с выбором размера, корзина и отправка состава заказа в Telegram или WhatsApp. Оплата на сайте не принимается: наличие, доставку и оплату покупатель согласует с продавцом в переписке.
+Responsive static vintage-clothing storefront with manually selectable English/German and EUR/USD, a darker visual theme, searchable/filterable product catalog, size selection, a browser-saved cart, and order messages for Telegram or WhatsApp. No payment is taken on the site; availability, delivery and payment are agreed with the seller in chat.
 
 ## Перед публикацией
 
-Сейчас это демонстрационный каталог: названия, фотографии, размеры, описания и цены — примеры, а контакты для заказа не настроены. Замените их своими данными в `app.js`:
+The catalog is illustrative: products, photos, sizes, descriptions and EUR prices are examples, not real inventory or offers. Replace them with your real items in `app.js`. Order contacts are not configured yet. Set the public contact details and conversion rate in `STORE_CONFIG`:
 
 ```js
 const STORE_CONFIG = {
-  telegram: "your_public_username", // имя пользователя (5–32 символа), можно с @
-  whatsapp: "79991234567"           // международный номер (8–15 цифр), без +, пробелов и скобок
+  telegram: "your_public_username", // username, 5–32 characters, optional @
+  whatsapp: "79991234567",          // international number, 8–15 digits, no +, spaces or brackets
+  usdPerEur: 1.08                   // demo static rate: USD received for 1 EUR
 };
 ```
 
-Заполните хотя бы один контакт, обновите массив `PRODUCTS` актуальными товарами и проверьте тексты о наличии и условиях доставки. Не публикуйте выдуманные сведения об остатках или доставке. Незаданные каналы останутся отключёнными. Когда контакты настроены, покупатель сможет открыть подготовленное сообщение в выбранном мессенджере; заказ считается подтверждённым только после ответа продавца.
+Enter at least one contact and replace `PRODUCTS` with current inventory and prices in EUR. USD display amounts are calculated using the manually configured `usdPerEur` rate; the demo rate is not live and must be updated manually. Neither sample prices nor the sample conversion rate represent current market prices or an exchange quote. Review availability and delivery terms; do not publish unverified stock or shipping claims. Unconfigured messenger channels stay disabled. Customers can open a prepared message in their chosen messenger; the order is only confirmed after the seller replies.
+
+Visitors can choose English/German and EUR/USD independently. Both selections persist in their browser across reloads. Product prices are stored in EUR and converted for display only; there is no live currency API.
 
 ## Бесплатная публикация на GitHub Pages
 
@@ -24,13 +27,13 @@ const STORE_CONFIG = {
 3. В разделе **Build and deployment** выберите **Deploy from a branch**, ветку `main` и папку `/ (root)`, затем нажмите **Save**.
 4. Дождитесь завершения сборки. Адрес магазина: **https://homiesshop.github.io/**. Проверяйте результат по ссылке, показанной GitHub в настройках Pages.
 
-На GitHub Free публикация через Pages бесплатна для публичных репозиториев.
+Publishing through Pages is free for public repositories on GitHub Free.
 
-Перед открытой публикацией замените демо-каталог и контакты. Корзина сохраняется локально в браузере посетителя и не передаётся на сервер; заказ отправляется только после того, как покупатель сам откроет и отправит сообщение в мессенджере.
+Before public launch, replace the demo catalog, conversion rate and contacts. The cart and language/currency choices are saved in each visitor's browser and are not sent to a server. An order is sent only after the customer opens and submits the message in their messenger.
 
 ## Локальный просмотр
 
-Откройте `index.html` в современном браузере или запустите простой статический сервер из корня проекта, например:
+Open `index.html` in a modern browser or run a small static server from the project root, for example:
 
 ```sh
 python -m http.server 8000
