@@ -52,8 +52,21 @@
       <a href="privacy.html">Privacy policy</a>
       <span>© 2026 · Homiesshop</span>
     </footer>
+    <script>
+      window.addEventListener("error", (event) => {
+        const status = document.querySelector("#admin-status");
+        if (status && event.filename && event.filename.includes("/admin.js")) {
+          status.textContent = `Dashboard script error: ${event.message}`;
+          status.className = "admin-status is-error";
+        }
+      });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="config.js?v=0bc6dcc"></script>
-    <script src="admin.js?v=admin-submit-v2"></script>
+    <script
+      src="admin.js?v=admin-submit-v3"
+      onload="if (typeof window.homiesshopAdminSubmit !== 'function') { document.querySelector('#admin-status').textContent = 'Dashboard script loaded without its sign-in handler. Reload this page or contact the shop owner.'; document.querySelector('#admin-status').className = 'admin-status is-error'; }"
+      onerror="document.querySelector('#admin-status').textContent = 'Dashboard script failed to load. Check your connection and reload this page.'; document.querySelector('#admin-status').className = 'admin-status is-error';"
+    ></script>
   </body>
 </html>
