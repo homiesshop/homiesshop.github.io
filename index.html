@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#171815">
+    <meta name="description" content="Архивная одежда, винтажные силуэты и вещи с характером.">
+    <title>Homiesshop — вещи с историей</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="demo-banner">Демо-магазин · каталог, фотографии и цены — примеры</div>
+    <header class="site-header">
+      <a class="wordmark" href="#" aria-label="Homiesshop — на главную">Homiesshop<span>®</span></a>
+      <nav class="main-nav" aria-label="Основная навигация">
+        <a href="#catalog">Каталог</a>
+        <a href="#about">О проекте</a>
+        <a href="#delivery">Доставка</a>
+      </nav>
+      <button class="cart-trigger" id="cart-trigger" type="button" aria-label="Открыть корзину">
+        <span>Корзина</span><span class="cart-count" id="cart-count">0</span>
+      </button>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-image" role="img" aria-label="Образ в винтажной одежде"></div>
+        <div class="hero-content">
+          <p class="eyebrow"><span class="eyebrow-line"></span> Вещи вне времени · выпуск 01</p>
+          <h1 id="hero-title">У каждой вещи<br>есть <em>прошлое.</em></h1>
+          <p class="hero-copy">Архивные силуэты, найденные фактуры и одежда, которая становится частью твоей истории.</p>
+          <a class="button button-light" href="#catalog">Смотреть коллекцию <span aria-hidden="true">↘</span></a>
+        </div>
+        <div class="hero-meta"><span>Подборка 01 / 2026</span><span>Заказ онлайн</span></div>
+        <span class="hero-index" aria-hidden="true">01</span>
+      </section>
+
+      <section class="catalog-section section-wrap" id="catalog">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Выбрано вручную</p>
+            <h2>Свежие находки<span class="heading-period">.</span></h2>
+          </div>
+          <p class="catalog-note">Небольшая демо-подборка.<br>Перед запуском замените товары на свои.</p>
+        </div>
+
+        <div class="catalog-controls">
+          <div class="filter-list" id="category-filters" aria-label="Фильтр по категориям">
+            <button class="filter-button is-active" type="button" data-category="all" aria-pressed="true">Всё <span id="all-count">08</span></button>
+            <button class="filter-button" type="button" data-category="outerwear" aria-pressed="false">Верхняя одежда</button>
+            <button class="filter-button" type="button" data-category="tops" aria-pressed="false">Верх</button>
+            <button class="filter-button" type="button" data-category="bottoms" aria-pressed="false">Низ</button>
+            <button class="filter-button" type="button" data-category="shoes" aria-pressed="false">Обувь</button>
+          </div>
+          <div class="catalog-tools">
+            <label class="search-box"><span class="visually-hidden">Поиск товаров</span><span aria-hidden="true">⌕</span><input id="product-search" type="search" placeholder="Найти вещь"></label>
+            <label class="sort-box"><span class="visually-hidden">Сортировка</span><select id="sort-products"><option value="featured">Сначала избранное</option><option value="price-asc">Сначала дешевле</option><option value="price-desc">Сначала дороже</option></select></label>
+          </div>
+        </div>
+        <p class="results-count" id="results-count" aria-live="polite"></p>
+        <div class="product-grid" id="product-grid"></div>
+        <p class="empty-state" id="empty-state" hidden>Ничего не найдено. Попробуйте изменить запрос или фильтр.</p>
+      </section>
+
+      <section class="manifesto" id="about">
+        <div class="manifesto-mark" aria-hidden="true">А</div>
+        <div class="manifesto-copy">
+          <p class="eyebrow">Не просто одежда</p>
+          <h2>Находить своё.<br><em>Носить по-своему.</em></h2>
+          <p>Мы любим вещи с характером: выцветший хлопок, правильную посадку и детали, которые замечаешь не сразу. Этот магазин — пространство для таких находок.</p>
+        </div>
+        <span class="manifesto-caption">Найдено. Переосмыслено. Твоё.</span>
+      </section>
+
+      <section class="service-row section-wrap" id="delivery" aria-label="Как работает заказ">
+        <article class="service-card">
+          <span class="service-number">01</span>
+          <h3>Выбери вещь</h3>
+          <p>Добавь понравившееся в корзину и укажи размер.</p>
+        </article>
+        <article class="service-card">
+          <span class="service-number">02</span>
+          <h3>Напиши нам</h3>
+          <p>Отправь заказ в Telegram или WhatsApp — детали уточним лично.</p>
+        </article>
+        <article class="service-card">
+          <span class="service-number">03</span>
+          <h3>Уточним детали</h3>
+          <p>Наличие, доставку и оплату согласуем в переписке до покупки.</p>
+        </article>
+      </section>
+
+      <section class="contact-strip">
+        <p>Есть вопрос или нужна помощь с выбором?</p>
+        <a href="#catalog">Напиши нам при оформлении заказа <span aria-hidden="true">↗</span></a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="wordmark" href="#">Homiesshop<span>®</span></a>
+      <p>Вещи с историей. Стиль — твой.</p>
+      <span>© 2026 · Демо-магазин</span>
+    </footer>
+
+    <dialog class="product-dialog" id="product-dialog" aria-labelledby="product-dialog-title">
+      <button class="dialog-close" type="button" data-close="product-dialog" aria-label="Закрыть">×</button>
+      <div class="product-dialog-image" id="product-dialog-image"></div>
+      <div class="product-dialog-content">
+        <p class="eyebrow" id="product-dialog-category"></p>
+        <h2 id="product-dialog-title"></h2>
+        <p class="dialog-price" id="product-dialog-price"></p>
+        <p class="dialog-description" id="product-dialog-description"></p>
+        <fieldset class="size-fieldset">
+          <legend>Выбери размер</legend>
+          <div class="size-list" id="size-list"></div>
+        </fieldset>
+        <button class="button button-dark add-to-cart" id="add-to-cart" type="button">Добавить в корзину <span aria-hidden="true">↗</span></button>
+        <p class="demo-disclaimer">Демо-позиция: наличие и параметры условные.</p>
+      </div>
+    </dialog>
+
+    <dialog class="cart-dialog" id="cart-dialog" aria-labelledby="cart-title">
+      <div class="cart-header">
+        <div><p class="eyebrow">Твои находки</p><h2 id="cart-title">Корзина <span id="cart-title-count">(0)</span></h2></div>
+        <button class="dialog-close" type="button" data-close="cart-dialog" aria-label="Закрыть">×</button>
+      </div>
+      <div class="cart-items" id="cart-items"></div>
+      <div class="cart-empty" id="cart-empty"><span aria-hidden="true">✳</span><p>Пока здесь пусто.</p><button type="button" class="text-button" data-close="cart-dialog">Найти свою вещь ↗</button></div>
+      <div class="cart-footer" id="cart-footer">
+        <div class="cart-total"><span>Итого, ориентировочно</span><strong id="cart-total"></strong></div>
+        <p>Оплата и доставка согласуются отдельно после подтверждения заказа.</p>
+        <button class="button button-dark" id="checkout-trigger" type="button">Оформить через мессенджер <span aria-hidden="true">↗</span></button>
+      </div>
+    </dialog>
+
+    <dialog class="checkout-dialog" id="checkout-dialog" aria-labelledby="checkout-title">
+      <button class="dialog-close" type="button" data-close="checkout-dialog" aria-label="Закрыть">×</button>
+      <p class="eyebrow">Последний шаг</p>
+      <h2 id="checkout-title">Отправить заказ</h2>
+      <p class="checkout-intro">Проверь список и выбери, куда отправить сообщение. Оплата на сайте не принимается.</p>
+      <label class="name-field">Как к тебе обращаться? <span>(необязательно)</span><input id="customer-name" type="text" maxlength="60" autocomplete="name" placeholder="Имя"></label>
+      <div class="checkout-summary" id="checkout-summary"></div>
+      <div class="messenger-actions" id="messenger-actions"></div>
+      <p class="configuration-notice" id="configuration-notice"></p>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
