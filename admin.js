@@ -184,8 +184,7 @@ if (!supabase) {
   syncSession();
 }
 
-loginForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
+window.homiesshopAdminSubmit = async (event) => {
   if (!supabase) return;
   loginButton.disabled = true;
   showStatus("Signing in…");
@@ -208,7 +207,7 @@ loginForm.addEventListener("submit", async (event) => {
   } finally {
     loginButton.disabled = false;
   }
-});
+};
 
 signOutButton.addEventListener("click", async () => {
   if (!supabase) return;

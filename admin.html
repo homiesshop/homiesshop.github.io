@@ -13,9 +13,6 @@
     <style>
       [hidden] { display: none !important; }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="config.js?v=0bc6dcc" defer></script>
-    <script src="admin.js?v=admin-status-v1" defer></script>
   </head>
   <body>
     <header class="site-header">
@@ -35,7 +32,7 @@
         <p>Set the public project URL and anon/publishable key in <code>config.js</code>, then run <code>supabase/setup.sql</code>. Never add a service-role key here.</p>
       </section>
 
-      <form class="admin-login" id="admin-login">
+      <form class="admin-login" id="admin-login" onsubmit="event.preventDefault(); if (window.homiesshopAdminSubmit) { window.homiesshopAdminSubmit(event); } else { document.querySelector('#admin-status').textContent = 'Dashboard script did not load. Please reload this page and try again.'; } return false;">
         <p class="admin-intro">Sign in with the email and password of the Supabase Auth user explicitly added to the SQL <code>admin_users</code> allowlist. Other signed-in users cannot read or change orders.</p>
         <label class="checkout-field">Admin email<input id="admin-email" type="email" autocomplete="username" required></label>
         <label class="checkout-field">Password<input id="admin-password" type="password" autocomplete="current-password" required></label>
@@ -55,5 +52,8 @@
       <a href="privacy.html">Privacy policy</a>
       <span>© 2026 · Homiesshop</span>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js?v=0bc6dcc"></script>
+    <script src="admin.js?v=admin-submit-v2"></script>
   </body>
 </html>
