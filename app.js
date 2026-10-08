@@ -82,6 +82,39 @@ const PRODUCTS = [
     }
   },
   {
+    id: "distressed-zip-hoodie",
+    name: { en: "Distressed Zip Hoodie", de: "Zip-Hoodie mit Distressed-Details" },
+    category: "tops",
+    categoryLabel: { en: "Top · zip hoodie", de: "Oberteil · Zip-Hoodie" },
+    priceEur: 66.68,
+    priceNote: {
+      en: "Item price; shipping is not included.",
+      de: "Artikelpreis; Versandkosten sind nicht enthalten."
+    },
+    badge: { en: "New arrival", de: "Neu" },
+    isDemo: false,
+    sizes: ["S", "M", "L", "XL"],
+    image: "images/products/distressed-zip-hoodie-back.jpg",
+    images: [
+      "images/products/distressed-zip-hoodie-back.jpg",
+      "images/products/distressed-zip-hoodie-hood-detail.jpg"
+    ],
+    imageAlt: {
+      en: [
+        "Back view of a black distressed zip hoodie",
+        "Close-up of the hood and distressed fabric"
+      ],
+      de: [
+        "Rückansicht eines schwarzen Zip-Hoodies mit Distressed-Details",
+        "Detailansicht der Kapuze und des Used-Looks"
+      ]
+    },
+    description: {
+      en: "Black zip hoodie with a washed, distressed finish, front pockets and graphic lettering.\n\nSize chart (cm):\nS: length 67 · chest 64 · shoulder 64 · sleeve 59\nM: length 69 · chest 66 · shoulder 66 · sleeve 60\nL: length 72 · chest 69 · shoulder 68 · sleeve 61\nXL: length 74 · chest 71 · shoulder 70 · sleeve 62\n\nMeasurements are listed as provided; compare them with a similar garment for fit.",
+      de: "Schwarzer Zip-Hoodie mit verwaschenem Used-Look, Fronttaschen und Schriftmotiv.\n\nGrößentabelle (cm):\nS: Länge 67 · Brust 64 · Schulter 64 · Ärmel 59\nM: Länge 69 · Brust 66 · Schulter 66 · Ärmel 60\nL: Länge 72 · Brust 69 · Schulter 68 · Ärmel 61\nXL: Länge 74 · Brust 71 · Schulter 70 · Ärmel 62\n\nDie Maße sind wie angegeben übernommen; vergleiche sie für die Passform mit einem ähnlichen Kleidungsstück."
+    }
+  },
+  {
     id: "track-jacket",
     name: { en: "Track Club Windbreaker", de: "Track-Club-Windjacke" },
     category: "outerwear",
@@ -547,6 +580,9 @@ function openProduct(productId, preserveSize = false) {
   document.querySelector("#product-dialog-category").textContent = localized(selectedProduct.categoryLabel);
   document.querySelector("#product-dialog-title").textContent = localized(selectedProduct.name);
   document.querySelector("#product-dialog-price").textContent = formatMoney(selectedProduct.priceEur);
+  const priceNote = document.querySelector("#product-price-note");
+  priceNote.textContent = selectedProduct.priceNote ? localized(selectedProduct.priceNote) : "";
+  priceNote.hidden = !selectedProduct.priceNote;
   document.querySelector(".demo-disclaimer").hidden = selectedProduct.isDemo === false;
   document.querySelector("#product-dialog-description").textContent = localized(selectedProduct.description);
   document.querySelector("#size-list").innerHTML = selectedProduct.sizes.map((size) => `
