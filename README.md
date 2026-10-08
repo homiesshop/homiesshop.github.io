@@ -50,7 +50,7 @@ GitHub Pages serves static files only. Orders and admin authentication require y
 - Only a Supabase Auth user whose UUID is listed in `admin_users` can read orders. That user can change a pending order to `approved` or `rejected`; reviewed time and reviewer UUID are recorded.
 - Contact data is personal information. The checkout explains that the name, email and/or phone number, delivery address and order go to the Supabase-hosted database; a required consent checkbox is included. Complete the privacy policy before enabling the form.
 - Database access is controlled in Supabase, not by hiding `admin.html`. Anyone may open the sign-in page, but only the allowlisted account can read or review orders. The browser contains only the public anon/publishable key; the service-role key is never used.
-- Most catalog entries are demo products with illustrative prices. The contrast-panel flared trousers listing is a made-to-order preview priced at €79 for the item only; delivery and import charges are excluded, and no delivery time is promised. USD conversion uses the static rate `usdPerEur: 1.08` in `config.js`; it is not a live quote. Update the exchange rate manually.
+- Most catalog entries are demo products with illustrative prices. The contrast-panel flared trousers listing is priced at €79. USD conversion uses the static rate `usdPerEur: 1.08` in `config.js`; it is not a live quote. Update the exchange rate manually.
 - Supabase Free has usage, storage and service limits and may change its plan terms. Public order forms can attract spam; monitor submissions and enable an appropriate CAPTCHA/rate-limit strategy if needed. Do not describe the setup as unlimited.
 
 ### Optional messenger checkout

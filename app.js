@@ -53,9 +53,10 @@ const PRODUCTS = [
     id: "contrast-panel-trousers",
     name: { en: "Contrast-Panel Flared Trousers", de: "Schlaghose mit Kontrastpaneelen" },
     category: "bottoms",
-    categoryLabel: { en: "Bottoms · made to order", de: "Hose · auf Bestellung" },
+    categoryLabel: { en: "Bottoms", de: "Hose" },
     priceEur: 79,
-    badge: { en: "Made to order", de: "Auf Bestellung" },
+    badge: { en: "New arrival", de: "Neu" },
+    isDemo: false,
     sizes: ["S", "M", "L", "XL"],
     image: "images/products/contrast-panel-trousers-model.jpg",
     images: [
@@ -75,13 +76,9 @@ const PRODUCTS = [
         "Model trägt die schwarz-weiße Hose mit Kontrastpaneelen"
       ]
     },
-    orderInfo: {
-      en: "Made to order from China after an order is confirmed. €79 is the item price only; delivery and import charges are not included. Delivery timing and final import terms are not confirmed. Online ordering is not available yet.",
-      de: "Auf Bestellung aus China nach Bestätigung der Bestellung. 79 € gelten nur für den Artikel; Versand- und Einfuhrkosten sind nicht enthalten. Lieferzeit und endgültige Einfuhrbedingungen sind noch nicht bestätigt. Online-Bestellungen sind derzeit nicht möglich."
-    },
     description: {
-      en: "Black-and-white contrast panels with a flared leg.\n\nSupplier size chart (cm):\nS: length 109 · waist 74 · hip 96 · thigh 59\nM: length 111 · waist 77 · hip 99 · thigh 61\nL: length 113 · waist 80 · hip 102 · thigh 63\nXL: length 115 · waist 83 · hip 105 · thigh 65",
-      de: "Schwarz-weiße Kontrastpaneele und ausgestelltes Bein.\n\nGrößentabelle des Anbieters (cm):\nS: Länge 109 · Taille 74 · Hüfte 96 · Oberschenkel 59\nM: Länge 111 · Taille 77 · Hüfte 99 · Oberschenkel 61\nL: Länge 113 · Taille 80 · Hüfte 102 · Oberschenkel 63\nXL: Länge 115 · Taille 83 · Hüfte 105 · Oberschenkel 65"
+      en: "Black-and-white contrast panels with a flared leg.\n\nSize chart (cm):\nS: length 109 · waist 74 · hip 96 · thigh 59\nM: length 111 · waist 77 · hip 99 · thigh 61\nL: length 113 · waist 80 · hip 102 · thigh 63\nXL: length 115 · waist 83 · hip 105 · thigh 65",
+      de: "Schwarz-weiße Kontrastpaneele und ausgestelltes Bein.\n\nGrößentabelle (cm):\nS: Länge 109 · Taille 74 · Hüfte 96 · Oberschenkel 59\nM: Länge 111 · Taille 77 · Hüfte 99 · Oberschenkel 61\nL: Länge 113 · Taille 80 · Hüfte 102 · Oberschenkel 63\nXL: Länge 115 · Taille 83 · Hüfte 105 · Oberschenkel 65"
     }
   },
   {
@@ -175,7 +172,7 @@ const TEXT = {
     heroMetaOrder: "Orders are not open yet",
     catalogEyebrow: "Selected by hand",
     catalogTitle: "New finds",
-    catalogNote: "Demo pieces and made-to-order previews.<br>Online orders are currently unavailable.",
+    catalogNote: "Demo pieces and new arrivals.<br>Online orders are currently unavailable.",
     categoryAll: "All",
     categoryOuterwear: "Outerwear",
     categoryTops: "Tops",
@@ -276,7 +273,7 @@ const TEXT = {
     heroMetaOrder: "Bestellungen sind noch geschlossen",
     catalogEyebrow: "Handverlesen",
     catalogTitle: "Neue Fundstücke",
-    catalogNote: "Demo-Artikel und Vorschau für Bestellungen.<br>Online-Bestellungen sind derzeit nicht möglich.",
+    catalogNote: "Demo-Artikel und Neuheiten.<br>Online-Bestellungen sind derzeit nicht möglich.",
     categoryAll: "Alle",
     categoryOuterwear: "Jacken",
     categoryTops: "Oberteile",
@@ -550,10 +547,7 @@ function openProduct(productId, preserveSize = false) {
   document.querySelector("#product-dialog-category").textContent = localized(selectedProduct.categoryLabel);
   document.querySelector("#product-dialog-title").textContent = localized(selectedProduct.name);
   document.querySelector("#product-dialog-price").textContent = formatMoney(selectedProduct.priceEur);
-  const orderNote = document.querySelector("#product-order-note");
-  orderNote.textContent = selectedProduct.orderInfo ? localized(selectedProduct.orderInfo) : "";
-  orderNote.hidden = !selectedProduct.orderInfo;
-  document.querySelector(".demo-disclaimer").hidden = Boolean(selectedProduct.orderInfo);
+  document.querySelector(".demo-disclaimer").hidden = selectedProduct.isDemo === false;
   document.querySelector("#product-dialog-description").textContent = localized(selectedProduct.description);
   document.querySelector("#size-list").innerHTML = selectedProduct.sizes.map((size) => `
     <label class="size-option">

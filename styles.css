@@ -124,7 +124,6 @@ dialog::backdrop { background: rgba(20,21,18,.58); backdrop-filter: blur(2px); }
 .product-dialog-content .eyebrow { margin-bottom: 11px; }
 .product-dialog-content h2 { margin-bottom: 7px; font: 500 27px/1.25 var(--serif); }
 .dialog-price { margin-bottom: 19px; font-size: 14px; font-weight: 600; }
-.product-order-note { margin: -7px 0 18px; padding: 10px 12px; border-left: 2px solid var(--accent); background: #efeee9; color: #57584f; font-size: 10px; line-height: 1.7; }
 .dialog-description { margin-bottom: 24px; color: var(--muted); font-size: 11px; line-height: 1.8; white-space: pre-line; }
 .size-fieldset { padding: 0; border: 0; }
 .size-fieldset legend { margin-bottom: 9px; font-size: 10px; font-weight: 600; }
