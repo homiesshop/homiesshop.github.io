@@ -10,6 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js" defer></script>
     <script src="app.js" defer></script>
   </head>
   <body>
@@ -107,6 +109,10 @@
     <footer class="site-footer">
       <a class="wordmark" href="#">Homiesshop<span>®</span></a>
       <p data-i18n="footerTagline">Vintage with a past. Style is yours.</p>
+      <div class="footer-links">
+        <a href="privacy.html" data-i18n="privacyPolicyLink">Privacy policy</a>
+        <a href="admin.html">Admin</a>
+      </div>
       <span data-i18n="footerCopyright">© 2026 · Demo store</span>
     </footer>
 
@@ -137,18 +143,38 @@
       <div class="cart-footer" id="cart-footer">
         <div class="cart-total"><span data-i18n="estimatedTotal">Estimated total</span><strong id="cart-total"></strong></div>
         <p data-i18n="cartPaymentNote">Payment and delivery are arranged separately after we confirm your order.</p>
-        <button class="button button-dark" id="checkout-trigger" type="button"><span data-i18n="checkoutButton">Order via messenger</span><span aria-hidden="true">↗</span></button>
+        <button class="button button-dark" id="checkout-trigger" type="button"><span data-i18n="checkoutButton">Continue to checkout</span><span aria-hidden="true">↗</span></button>
       </div>
     </dialog>
 
     <dialog class="checkout-dialog" id="checkout-dialog" aria-labelledby="checkout-title">
       <button class="dialog-close" type="button" data-close="checkout-dialog" aria-label="Close">×</button>
       <p class="eyebrow" data-i18n="checkoutEyebrow">One last step</p>
-      <h2 id="checkout-title" data-i18n="checkoutTitle">Send your order</h2>
-      <p class="checkout-intro" data-i18n="checkoutIntro">Review your order and choose where to send it. We don’t accept payments on this site.</p>
-      <label class="name-field"><span data-i18n="namePrompt">What should we call you?</span> <span data-i18n="optional">(optional)</span><input id="customer-name" type="text" maxlength="60" autocomplete="name" data-i18n-placeholder="namePlaceholder" placeholder="Name"></label>
+      <h2 id="checkout-title" data-i18n="checkoutTitle">Place your order</h2>
+      <p class="checkout-intro" id="checkout-intro" data-i18n="checkoutIntro">Enter your contact details and delivery address. We’ll review your order and confirm it manually. No payment is taken here.</p>
       <div class="checkout-summary" id="checkout-summary"></div>
-      <div class="messenger-actions" id="messenger-actions"></div>
+      <div class="form-checkout" id="form-checkout">
+        <form id="checkout-form" novalidate>
+          <label class="checkout-field"><span data-i18n="namePrompt">Full name</span><input name="customer_name" id="customer-name" type="text" maxlength="100" autocomplete="name" data-i18n-placeholder="namePlaceholder" placeholder="Name" required></label>
+          <div class="contact-fields">
+              <label class="checkout-field"><span data-i18n="emailLabel">Email</span><input id="customer-email" type="email" maxlength="254" autocomplete="email" data-i18n-placeholder="emailPlaceholder" placeholder="you@example.com"></label>
+              <label class="checkout-field"><span data-i18n="phoneLabel">Phone</span><input id="customer-phone" type="tel" maxlength="40" autocomplete="tel" data-i18n-placeholder="phonePlaceholder" placeholder="+49 123 456789"></label>
+          </div>
+          <p class="field-hint" data-i18n="contactRequiredHint">Please provide at least an email address or phone number.</p>
+          <label class="checkout-field"><span data-i18n="addressLabel">Delivery address</span><textarea id="delivery-address" rows="3" maxlength="500" autocomplete="street-address" data-i18n-placeholder="addressPlaceholder" placeholder="Street, number, postal code, city, country" required></textarea></label>
+          <label class="checkout-field"><span data-i18n="orderNoteLabel">Order note</span><textarea id="order-note" rows="2" maxlength="500" data-i18n-placeholder="orderNotePlaceholder" placeholder="Optional"></textarea></label>
+          <label class="privacy-consent"><input type="checkbox" name="privacy_consent" id="privacy-consent" value="yes" required><span data-i18n="privacyConsent">I agree that my details may be sent to Homiesshop via Supabase to handle this order request.</span></label>
+          <p class="privacy-note" data-i18n="privacyNotice">Your details are sent to our order form provider and used to respond to this order. Do not submit until the seller’s privacy policy is available.</p>
+          <p class="privacy-link-row"><a id="privacy-policy-link" href="privacy.html" target="_blank" rel="noopener noreferrer" hidden data-i18n="privacyPolicyLink">Read the privacy policy</a><span id="privacy-policy-missing" data-i18n="privacyPolicyMissing">The seller must publish a completed privacy policy before enabling orders.</span></p>
+          <button class="button button-dark submit-order" id="submit-order" type="submit" disabled><span data-i18n="submitOrder">Send order request</span><span aria-hidden="true">↗</span></button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+      <div class="messenger-checkout" id="messenger-checkout" hidden>
+        <p class="messenger-mode-note" data-i18n="messengerModeNote">This checkout mode is set to messenger in app.js. Choose it to continue in chat.</p>
+        <label class="checkout-field"><span data-i18n="namePrompt">Full name</span><input id="messenger-name" type="text" maxlength="100" autocomplete="name" data-i18n-placeholder="namePlaceholder" placeholder="Name"></label>
+        <div class="messenger-actions" id="messenger-actions"></div>
+      </div>
       <p class="configuration-notice" id="configuration-notice"></p>
     </dialog>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>

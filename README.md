@@ -1,42 +1,58 @@
-# Homiesshop — демо-магазин одежды
+# Homiesshop
 
-Responsive static vintage-clothing storefront with manually selectable English/German and EUR/USD, a darker visual theme, searchable/filterable product catalog, size selection, a browser-saved cart, and order messages for Telegram or WhatsApp. No payment is taken on the site; availability, delivery and payment are agreed with the seller in chat.
+Responsive static storefront with English/German language selection, EUR/USD display, a dark theme, a searchable catalog, size selection and a browser-saved cart. Customers can submit order requests with contact details and a delivery address. The shop owner signs into a separate dashboard to review and approve or reject requests. This website does not take payment.
 
-## Перед публикацией
+## Supabase order backend setup
 
-The catalog is illustrative: products, photos, sizes, descriptions and EUR prices are examples, not real inventory or offers. Replace them with your real items in `app.js`. Order contacts are not configured yet. Set the public contact details and conversion rate in `STORE_CONFIG`:
+GitHub Pages serves static files only. Orders and admin authentication require your Supabase project at `https://ievhdpradeetrsxcnokv.supabase.co`. The repository includes a starter schema in `supabase/setup.sql`; the project URL is prefilled in `config.js`, but the public key and privacy-policy URL remain blank. Until those settings are configured, website order submission is disabled and clearly reported as unavailable.
 
-```js
-const STORE_CONFIG = {
-  telegram: "your_public_username", // username, 5–32 characters, optional @
-  whatsapp: "79991234567",          // international number, 8–15 digits, no +, spaces or brackets
-  usdPerEur: 1.08                   // demo static rate: USD received for 1 EUR
-};
-```
+1. Create a Supabase account/project using the **Free** plan at [supabase.com/dashboard](https://supabase.com/dashboard). Choose the project region appropriate to your business and customers. Free-plan quotas and availability can change; free does not mean unlimited or guaranteed uptime.
+2. Open **SQL Editor → New query**, paste and run the full contents of [`supabase/setup.sql`](supabase/setup.sql). It creates the orders and admin allowlist tables, enables row-level security, permits public **inserts of pending orders only**, and reserves reading/reviewing orders for allowlisted authenticated users. The public role cannot read or delete customer orders.
+3. In Supabase, open **Authentication → Users → Add user** and create the owner’s login. Use the owner’s own account; do not share its password. Copy that user’s UUID and run the final allowlist insert in the SQL Editor, replacing the placeholder:
 
-Enter at least one contact and replace `PRODUCTS` with current inventory and prices in EUR. USD display amounts are calculated using the manually configured `usdPerEur` rate; the demo rate is not live and must be updated manually. Neither sample prices nor the sample conversion rate represent current market prices or an exchange quote. Review availability and delivery terms; do not publish unverified stock or shipping claims. Unconfigured messenger channels stay disabled. Customers can open a prepared message in their chosen messenger; the order is only confirmed after the seller replies.
+   ```sql
+   insert into public.admin_users (user_id)
+   values ('YOUR_AUTH_USER_UUID');
+   ```
 
-Visitors can choose English/German and EUR/USD independently. Both selections persist in their browser across reloads. Product prices are stored in EUR and converted for display only; there is no live currency API.
+   Never add a customer or an untrusted user to `admin_users`. To remove admin access, delete that UUID from `public.admin_users` in the SQL Editor.
+4. Open **Project Settings → API** (or **Connect**) and copy the public **anon / publishable key** for the project URL already in `config.js`. Put it in the empty `supabaseAnonKey` field and, after finishing the privacy policy, set `privacyPolicyUrl`:
 
-## Бесплатная публикация на GitHub Pages
+   ```js
+   supabaseUrl: "https://ievhdpradeetrsxcnokv.supabase.co",
+   supabaseAnonKey: "YOUR_PUBLIC_ANON_OR_PUBLISHABLE_KEY",
+   privacyPolicyUrl: "https://homiesshop.github.io/privacy.html",
+   ```
 
-Сайт не требует сборки, сервера, базы данных или платных сервисов.
+   The anon/publishable key is designed for browser use and is visible to site visitors when checkout is enabled. Do not send it in chat. **Never put a `service_role`/secret key, database password, Auth password, or private token in `config.js` or any browser file.** With RLS enabled and the supplied policies applied, the public key cannot read the order table. The key remains blank in this repository until you configure it.
+5. Complete `privacy.html`: replace every bracketed legal placeholder with accurate seller identity/contact details, lawful basis, retention period and customer-rights information. Review the provider’s data location, retention, subprocessors and international-transfer terms. The page is intentionally marked as a draft; do not accept real personal data until it has been completed and reviewed for the laws that apply to the seller and their customers. Update `privacyPolicyUrl` if the completed policy is hosted elsewhere on this same site.
+6. In Supabase, open **Authentication → URL Configuration** and set the Site URL to `https://homiesshop.github.io`. Add `https://homiesshop.github.io/**` to the allowed redirect URLs. The static admin page is `https://homiesshop.github.io/admin.html`.
+7. After setup, make the public `config.js` settings available to the deployed static site and publish the completed `privacy.html` on `main`. GitHub Pages branch deployment serves repository-root files, so a local-only config file does not appear on the live site. The anon/publishable key is public by design, but it is intentionally not committed here. Never publish a service-role key. No build command is required.
+8. Test with fictional data: submit a request, confirm it appears only after signing into `/admin.html` with the allowlisted owner account, and test both **Approve order** and **Reject order**. Confirm an unlisted Auth user sees no orders and cannot change order status. Do not use real customer data for testing.
 
-1. Репозиторий сайта: [`homiesshop/homiesshop.github.io`](https://github.com/homiesshop/homiesshop.github.io). Файлы сайта лежат в корне ветки `main`.
-2. Чтобы включить или проверить публикацию, откройте **Settings → Pages** в репозитории.
-3. В разделе **Build and deployment** выберите **Deploy from a branch**, ветку `main` и папку `/ (root)`, затем нажмите **Save**.
-4. Дождитесь завершения сборки. Адрес магазина: **https://homiesshop.github.io/**. Проверяйте результат по ссылке, показанной GitHub в настройках Pages.
+### Checkout and access model
 
-Publishing through Pages is free for public repositories on GitHub Free.
+- Public visitors can submit only new `pending` orders. Database row-level security (RLS) denies anonymous reads, updates and deletes.
+- Only a Supabase Auth user whose UUID is listed in `admin_users` can read orders. That user can change a pending order to `approved` or `rejected`; reviewed time and reviewer UUID are recorded.
+- Contact data is personal information. The checkout explains that the name, email and/or phone number, delivery address and order go to the Supabase-hosted database; a required consent checkbox is included. Complete the privacy policy before enabling the form.
+- Database access is controlled in Supabase, not by hiding `admin.html`. Anyone may open the sign-in page, but only the allowlisted account can read or review orders. The browser contains only the public anon/publishable key; the service-role key is never used.
+- Store order prices are illustrative EUR amounts; USD conversion uses the static demo rate `usdPerEur: 1.08` in `config.js`. Replace demo products/prices and update the exchange rate manually before launch; it is not a live quote.
+- Supabase Free has usage, storage and service limits and may change its plan terms. Public order forms can attract spam; monitor submissions and enable an appropriate CAPTCHA/rate-limit strategy if needed. Do not describe the setup as unlimited.
 
-Before public launch, replace the demo catalog, conversion rate and contacts. The cart and language/currency choices are saved in each visitor's browser and are not sent to a server. An order is sent only after the customer opens and submits the message in their messenger.
+### Optional messenger checkout
 
-## Локальный просмотр
+To use the older Telegram/WhatsApp flow instead, set `checkoutMode: "messenger"` in `config.js` and fill the public `telegram` username and/or `whatsapp` international phone number. The order form remains the default mode. Messenger orders are not stored in the dashboard.
 
-Open `index.html` in a modern browser or run a small static server from the project root, for example:
+## Free GitHub Pages hosting
+
+The live site repository is [`homiesshop/homiesshop.github.io`](https://github.com/homiesshop/homiesshop.github.io). Enable **Settings → Pages → Deploy from a branch → `main` → `/(root)` → Save** if it is not already enabled. The URL is [https://homiesshop.github.io/](https://homiesshop.github.io/). Hosting is free for this public repository, subject to GitHub Pages terms and limits.
+
+## Local preview
+
+Open `index.html` in a modern browser or serve the repository root with a static server, for example:
 
 ```sh
 python -m http.server 8000
 ```
 
-Затем откройте `http://localhost:8000`.
+Open `http://localhost:8000`.

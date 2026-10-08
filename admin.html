@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#1b1d1a">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Order admin — Homiesshop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js" defer></script>
+    <script src="admin.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="index.html">Homiesshop<span>®</span></a>
+      <a class="button button-light" href="index.html">Back to shop <span aria-hidden="true">↗</span></a>
+    </header>
+    <main class="admin-page">
+      <div class="section-heading admin-heading">
+        <div><p class="eyebrow">Private area</p><h1>Order dashboard</h1></div>
+        <button class="button button-light" type="button" id="sign-out" hidden>Sign out</button>
+      </div>
+
+      <section class="admin-setup-notice" id="admin-setup-notice" hidden>
+        <h2>Supabase is not connected yet</h2>
+        <p>Set the public project URL and anon/publishable key in <code>config.js</code>, then run <code>supabase/setup.sql</code>. Never add a service-role key here.</p>
+      </section>
+
+      <form class="admin-login" id="admin-login" hidden>
+        <p class="admin-intro">Sign in with the email and password of the Supabase Auth user explicitly added to the SQL <code>admin_users</code> allowlist. Other signed-in users cannot read or change orders.</p>
+        <label class="checkout-field">Admin email<input id="admin-email" type="email" autocomplete="username" required></label>
+        <label class="checkout-field">Password<input id="admin-password" type="password" autocomplete="current-password" required></label>
+        <button class="button button-dark" type="submit" id="login-submit">Sign in</button>
+      </form>
+
+      <section class="admin-orders" id="admin-orders" hidden>
+        <div class="admin-orders-heading">
+          <p class="eyebrow">Access restricted by database policy</p>
+          <button class="button button-light" type="button" id="refresh-orders">Refresh orders</button>
+        </div>
+        <div class="admin-orders-list" id="admin-orders-list"></div>
+      </section>
+      <p class="admin-status" id="admin-status" role="status" aria-live="polite"></p>
+    </main>
+    <footer class="site-footer">
+      <a class="wordmark" href="index.html">Homiesshop<span>®</span></a>
+      <a href="privacy.html">Privacy policy</a>
+      <span>© 2026 · Homiesshop</span>
+    </footer>
+  </body>
+</html>

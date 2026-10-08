@@ -1,12 +1,9 @@
 "use strict";
 
-// Add public contact details before publishing. Leave a channel empty to keep it disabled.
+// Website orders require a Supabase project and a completed privacy policy URL.
+// Set checkoutMode to "messenger" to use the optional Telegram/WhatsApp checkout.
 // Prices below are illustrative EUR amounts; update this static USD-per-EUR rate manually.
-const STORE_CONFIG = {
-  telegram: "",
-  whatsapp: "",
-  usdPerEur: 1.08
-};
+const STORE_CONFIG = window.HOMIESSHOP_CONFIG || {};
 
 const PRODUCTS = [
   {
@@ -163,11 +160,11 @@ const TEXT = {
     service1Title: "Choose your piece",
     service1Copy: "Add your favourite to the cart and choose a size.",
     service2Title: "Message us",
-    service2Copy: "Send your order via Telegram or WhatsApp and we’ll confirm the details together.",
+    service2Copy: "Send an order request. We’ll review availability and get back to you to confirm.",
     service3Title: "Confirm the details",
     service3Copy: "Availability, delivery and payment are agreed in chat before purchase.",
     contactQuestion: "Need help finding the right piece?",
-    contactLink: "Message us when placing your order",
+    contactLink: "Send an order request",
     footerTagline: "Vintage with a past. Style is yours.",
     footerCopyright: "© 2026 · Demo store",
     chooseSize: "Choose a size",
@@ -178,13 +175,35 @@ const TEXT = {
     findPiece: "Find your piece",
     estimatedTotal: "Estimated total",
     cartPaymentNote: "Payment and delivery are arranged separately after we confirm your order.",
-    checkoutButton: "Order via messenger",
+    checkoutButton: "Continue to checkout",
     checkoutEyebrow: "One last step",
-    checkoutTitle: "Send your order",
-    checkoutIntro: "Review your order and choose where to send it. We don’t accept payments on this site.",
-    namePrompt: "What should we call you?",
+    checkoutTitle: "Place your order",
+    checkoutIntro: "Enter your contact details and delivery address. We’ll review your request and confirm the order manually. No payment is taken here.",
+    messengerCheckoutIntro: "Review your order and choose a messenger. Availability, delivery and payment are confirmed by the seller in chat.",
+    namePrompt: "Full name",
     optional: "(optional)",
     namePlaceholder: "Name",
+    emailLabel: "Email address",
+    emailPlaceholder: "you@example.com",
+    phoneLabel: "Phone number",
+    phonePlaceholder: "+1 555 123 4567",
+    contactRequiredHint: "Please provide at least an email address or phone number.",
+    addressLabel: "Delivery address",
+    addressPlaceholder: "Street, number, postal code, city, country",
+    orderNoteLabel: "Order note",
+    orderNotePlaceholder: "Optional",
+    privacyConsent: "I agree that my details may be sent to Homiesshop via Supabase to handle this order request.",
+    privacyNotice: "Your name, contact details, delivery address and order are sent to the Homiesshop order database hosted by Supabase and used to process this request. No payment is collected here.",
+    privacyPolicyLink: "Read the privacy policy",
+    privacyPolicyMissing: "The seller must publish a completed privacy policy before enabling orders.",
+    submitOrder: "Send order request",
+    formNotConfigured: "Website orders are not set up yet. The seller must configure Supabase and publish a completed privacy policy. No order has been sent.",
+    formSubmitPending: "Sending your order request…",
+    formSubmitSuccess: "Your request was sent. The seller will review it and contact you to confirm the order.",
+    formSubmitFailed: "We couldn’t send your request. Nothing was confirmed; please try again later or contact the seller.",
+    formContactValidation: "Enter at least one valid email address or phone number.",
+    formMissingFields: "Please complete the required fields and agree to the privacy notice.",
+    messengerModeNote: "Messenger checkout is selected in the store configuration.",
     sizeLine: "Size:",
     remove: "Remove",
     quantity: "Quantity",
@@ -197,7 +216,7 @@ const TEXT = {
     writeTo: "Message us on",
     notConfigured: "not set up",
     checkoutConfigured: "Your message will open in the selected messenger. The order is confirmed only after the seller replies.",
-    checkoutNotConfigured: "No messenger is set up yet, or the contact details are invalid. Check STORE_CONFIG in app.js; see README for setup.",
+    checkoutNotConfigured: "No messenger is set up yet, or the contact details are invalid. Check config.js; see README for setup.",
     toastChooseSize: "Choose a size before adding this piece.",
     toastAdded: "Added to your cart.",
     toastCartSave: "Your cart will only be available until you close this page.",
@@ -242,11 +261,11 @@ const TEXT = {
     service1Title: "Stück auswählen",
     service1Copy: "Lege deinen Favoriten in den Warenkorb und wähle eine Größe.",
     service2Title: "Schreib uns",
-    service2Copy: "Sende deine Bestellung per Telegram oder WhatsApp. Wir klären die Details persönlich.",
+    service2Copy: "Sende eine Bestellanfrage. Wir prüfen die Verfügbarkeit und melden uns zur Bestätigung.",
     service3Title: "Details abstimmen",
     service3Copy: "Verfügbarkeit, Versand und Zahlung stimmen wir vor dem Kauf im Chat ab.",
     contactQuestion: "Brauchst du Hilfe bei der Auswahl?",
-    contactLink: "Schreib uns bei deiner Bestellung",
+    contactLink: "Bestellanfrage senden",
     footerTagline: "Vintage mit Geschichte. Dein Stil.",
     footerCopyright: "© 2026 · Demo-Shop",
     chooseSize: "Größe auswählen",
@@ -257,13 +276,35 @@ const TEXT = {
     findPiece: "Fundstück entdecken",
     estimatedTotal: "Voraussichtliche Summe",
     cartPaymentNote: "Zahlung und Versand vereinbaren wir nach der Bestätigung deiner Bestellung.",
-    checkoutButton: "Per Messenger bestellen",
+    checkoutButton: "Weiter zur Bestellung",
     checkoutEyebrow: "Nur noch ein Schritt",
-    checkoutTitle: "Bestellung senden",
-    checkoutIntro: "Prüfe deine Auswahl und wähle, wohin die Nachricht gesendet werden soll. Die Zahlung erfolgt nicht auf dieser Website.",
-    namePrompt: "Wie dürfen wir dich nennen?",
+    checkoutTitle: "Bestellung aufgeben",
+    checkoutIntro: "Gib deine Kontaktdaten und Lieferadresse ein. Wir prüfen deine Anfrage und bestätigen die Bestellung persönlich. Hier erfolgt keine Zahlung.",
+    messengerCheckoutIntro: "Prüfe deine Auswahl und wähle einen Messenger. Verfügbarkeit, Versand und Zahlung bestätigt der Verkäufer im Chat.",
+    namePrompt: "Vollständiger Name",
     optional: "(optional)",
     namePlaceholder: "Name",
+    emailLabel: "E-Mail-Adresse",
+    emailPlaceholder: "du@beispiel.de",
+    phoneLabel: "Telefonnummer",
+    phonePlaceholder: "+49 30 123456",
+    contactRequiredHint: "Bitte gib mindestens eine E-Mail-Adresse oder Telefonnummer an.",
+    addressLabel: "Lieferadresse",
+    addressPlaceholder: "Straße, Hausnummer, Postleitzahl, Ort, Land",
+    orderNoteLabel: "Nachricht zur Bestellung",
+    orderNotePlaceholder: "Optional",
+    privacyConsent: "Ich stimme zu, dass meine Angaben zur Bearbeitung dieser Bestellanfrage über Supabase an Homiesshop übermittelt werden.",
+    privacyNotice: "Name, Kontaktdaten, Lieferadresse und Bestellung werden an die von Supabase gehostete Homiesshop-Bestelldatenbank übermittelt und zur Bearbeitung der Anfrage verwendet. Hier erfolgt keine Zahlung.",
+    privacyPolicyLink: "Datenschutzhinweise lesen",
+    privacyPolicyMissing: "Der Verkäufer muss vor der Freischaltung eine vollständige Datenschutzerklärung veröffentlichen.",
+    submitOrder: "Bestellanfrage senden",
+    formNotConfigured: "Online-Bestellungen sind noch nicht eingerichtet. Der Verkäufer muss Supabase konfigurieren und eine vollständige Datenschutzerklärung veröffentlichen. Es wurde keine Anfrage gesendet.",
+    formSubmitPending: "Bestellanfrage wird gesendet …",
+    formSubmitSuccess: "Deine Anfrage wurde gesendet. Der Verkäufer prüft sie und meldet sich zur Bestätigung.",
+    formSubmitFailed: "Deine Anfrage konnte nicht gesendet werden. Es wurde nichts bestätigt. Bitte versuche es später erneut oder kontaktiere den Verkäufer.",
+    formContactValidation: "Gib mindestens eine gültige E-Mail-Adresse oder Telefonnummer an.",
+    formMissingFields: "Bitte fülle alle Pflichtfelder aus und bestätige den Datenschutzhinweis.",
+    messengerModeNote: "Der Messenger-Checkout ist in der Shop-Konfiguration ausgewählt.",
     sizeLine: "Größe:",
     remove: "Entfernen",
     quantity: "Menge",
@@ -303,10 +344,35 @@ const cartCount = document.querySelector("#cart-count");
 const toast = document.querySelector("#toast");
 const languageSelect = document.querySelector("#language-select");
 const currencySelect = document.querySelector("#currency-select");
+const checkoutForm = document.querySelector("#checkout-form");
+const formStatus = document.querySelector("#form-status");
+const backendUrl = typeof STORE_CONFIG.supabaseUrl === "string" ? STORE_CONFIG.supabaseUrl.trim() : "";
+const backendKey = typeof STORE_CONFIG.supabaseAnonKey === "string" ? STORE_CONFIG.supabaseAnonKey.trim() : "";
+const backendUrlIsValid = (() => {
+  try {
+    const url = new URL(backendUrl);
+    return url.protocol === "https:" &&
+      url.hostname.endsWith(".supabase.co") &&
+      !url.username &&
+      !url.password &&
+      !url.search &&
+      !url.hash &&
+      url.pathname === "/";
+  } catch {
+    return false;
+  }
+})();
+const supabaseClient = backendUrlIsValid && backendKey && window.supabase?.createClient
+  ? window.supabase.createClient(backendUrl, backendKey)
+  : null;
+const validPrivacyPolicyUrl = getPrivacyPolicyUrl();
 let activeCategory = "all";
 let selectedProduct = null;
 let selectedSize = "";
 let toastTimer;
+let orderSubmitting = false;
+let formStatusKey = "";
+let formStatusState = "";
 
 function readPreference(key, allowed, fallback) {
   try {
@@ -334,7 +400,7 @@ function text(key) {
 }
 
 function formatMoney(priceEur) {
-  const amount = currency === "USD" ? priceEur * STORE_CONFIG.usdPerEur : priceEur;
+  const amount = currency === "USD" ? priceEur * Number(STORE_CONFIG.usdPerEur) : priceEur;
   const locale = language === "de" ? "de-DE" : "en-US";
   return new Intl.NumberFormat(locale, { style: "currency", currency, maximumFractionDigits: 2 }).format(amount);
 }
@@ -517,7 +583,7 @@ function openDialog(dialog) {
 }
 
 function buildOrderMessage() {
-  const name = document.querySelector("#customer-name").value.trim();
+  const name = document.querySelector("#messenger-name").value.trim();
   const lines = cart.map((item) => {
     const product = getProduct(item.id);
     return `• ${localized(product.name)} — ${text("sizeLine")} ${item.size} × ${item.quantity} — ${formatMoney(product.priceEur * item.quantity)}`;
@@ -535,9 +601,33 @@ function buildOrderMessage() {
 function renderCheckout() {
   const summary = cart.map((item) => {
     const product = getProduct(item.id);
-    return `${localized(product.name)} · ${item.size} · ${item.quantity} ${language === "de" ? "Stk." : item.quantity === 1 ? "pc." : "pcs."}`;
+    return `${localized(product.name)} · ${item.size} · ${item.quantity} ${language === "de" ? "Stk." : item.quantity === 1 ? "pc." : "pcs."} · ${formatMoney(product.priceEur * item.quantity)}`;
   });
   document.querySelector("#checkout-summary").textContent = summary.join("\n");
+
+  const messengerMode = STORE_CONFIG.checkoutMode === "messenger";
+  const formCheckout = document.querySelector("#form-checkout");
+  const messengerCheckout = document.querySelector("#messenger-checkout");
+  formCheckout.hidden = messengerMode;
+  messengerCheckout.hidden = !messengerMode;
+  document.querySelector("#checkout-intro").textContent = text(messengerMode ? "messengerCheckoutIntro" : "checkoutIntro");
+
+  const formIsReady = Boolean(supabaseClient && validPrivacyPolicyUrl);
+  const submitButton = document.querySelector("#submit-order");
+  submitButton.disabled = !formIsReady || cart.length === 0 || orderSubmitting;
+  document.querySelector("#privacy-policy-link").hidden = !validPrivacyPolicyUrl;
+  document.querySelector("#privacy-policy-link").href = validPrivacyPolicyUrl || "privacy.html";
+  document.querySelector("#privacy-policy-missing").hidden = Boolean(validPrivacyPolicyUrl);
+  if (orderSubmitting) {
+    setFormStatus(text("formSubmitPending"), "pending", "formSubmitPending");
+  } else if (formStatusKey) {
+    setFormStatus(text(formStatusKey), formStatusState, formStatusKey);
+  } else if (!messengerMode && !formIsReady) {
+    setFormStatus(text("formNotConfigured"), "warning", "formNotConfigured");
+  } else {
+    formStatus.textContent = "";
+    formStatus.className = "form-status";
+  }
 
   const telegramHandle = STORE_CONFIG.telegram.trim().replace(/^@/, "");
   const whatsappNumber = STORE_CONFIG.whatsapp.replace(/\D/g, "");
@@ -562,10 +652,98 @@ function renderCheckout() {
   ).join("");
 
   const notice = document.querySelector("#configuration-notice");
+  notice.hidden = !messengerMode;
   notice.textContent = channels.some((channel) => channel.configured)
     ? text("checkoutConfigured")
     : text("checkoutNotConfigured");
+
 }
+
+function getPrivacyPolicyUrl() {
+  const configuredUrl = typeof STORE_CONFIG.privacyPolicyUrl === "string" ? STORE_CONFIG.privacyPolicyUrl.trim() : "";
+  if (!configuredUrl) return "";
+  try {
+    const url = new URL(configuredUrl, window.location.href);
+    return url.protocol === "https:" && url.origin === window.location.origin ? url.href : "";
+  } catch (error) {
+    console.error("The configured privacy policy URL is invalid.", error);
+    return "";
+  }
+}
+
+function setFormStatus(message, state, key = "") {
+  formStatus.textContent = message;
+  formStatus.className = `form-status is-${state}`;
+  formStatusKey = key;
+  formStatusState = state;
+}
+
+checkoutForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  if (orderSubmitting || STORE_CONFIG.checkoutMode === "messenger" || !supabaseClient || cart.length === 0 || !validPrivacyPolicyUrl) {
+    setFormStatus(text("formNotConfigured"), "warning", "formNotConfigured");
+    return;
+  }
+  if (!checkoutForm.reportValidity()) {
+    setFormStatus(text("formMissingFields"), "error", "formMissingFields");
+    return;
+  }
+  const email = document.querySelector("#customer-email").value.trim();
+  const phone = document.querySelector("#customer-phone").value.trim();
+  if (!email && !phone || phone && phone.replace(/\D/g, "").length < 5) {
+    setFormStatus(text("formContactValidation"), "error", "formContactValidation");
+    (phone && phone.replace(/\D/g, "").length < 5
+      ? document.querySelector("#customer-phone")
+      : document.querySelector("#customer-email")).focus();
+    return;
+  }
+
+  const submitButton = document.querySelector("#submit-order");
+  orderSubmitting = true;
+  submitButton.disabled = true;
+  setFormStatus(text("formSubmitPending"), "pending", "formSubmitPending");
+  try {
+    const items = cart.map((item) => {
+      const product = getProduct(item.id);
+      const unitPrice = currency === "USD" ? product.priceEur * Number(STORE_CONFIG.usdPerEur) : product.priceEur;
+      const lineTotal = unitPrice * item.quantity;
+      return {
+        product_id: product.id,
+        name: localized(product.name),
+        size: item.size,
+        quantity: item.quantity,
+        unit_price: Number(unitPrice.toFixed(2)),
+        line_total: Number(lineTotal.toFixed(2))
+      };
+    });
+    const total = Number(items.reduce((sum, item) => sum + item.line_total, 0).toFixed(2));
+    const { error } = await supabaseClient.from("orders").insert({
+      customer_name: document.querySelector("#customer-name").value.trim(),
+      email: email || null,
+      phone: phone || null,
+      delivery_address: document.querySelector("#delivery-address").value.trim(),
+      order_note: document.querySelector("#order-note").value.trim() || null,
+      items,
+      total,
+      currency,
+      locale: language,
+      privacy_consent: true,
+      privacy_notice_version: "2026-10-08-v1"
+    });
+    if (error) throw error;
+    setFormStatus(text("formSubmitSuccess"), "success", "formSubmitSuccess");
+    cart = [];
+    saveCart();
+    renderCart();
+    checkoutForm.reset();
+  } catch (error) {
+    console.error("Order form submission failed.", error);
+    setFormStatus(text("formSubmitFailed"), "error", "formSubmitFailed");
+  } finally {
+    orderSubmitting = false;
+    submitButton.disabled = !supabaseClient || !validPrivacyPolicyUrl || cart.length === 0;
+  }
+});
 
 categoryFilters.addEventListener("click", (event) => {
   const button = event.target.closest("[data-category]");
@@ -640,8 +818,8 @@ document.querySelectorAll("dialog").forEach((dialog) => {
   });
 });
 
-document.querySelector("#customer-name").addEventListener("input", () => {
-  if (checkoutDialog.open) renderCheckout();
+document.querySelector("#messenger-name").addEventListener("input", () => {
+  if (checkoutDialog.open && STORE_CONFIG.checkoutMode === "messenger") renderCheckout();
 });
 
 document.querySelector(".cart-empty .text-button").addEventListener("click", () => {
