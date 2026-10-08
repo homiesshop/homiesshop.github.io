@@ -1,6 +1,6 @@
 # Homiesshop
 
-Responsive static storefront with English/German language selection, EUR/USD display, a dark theme, a searchable catalog, size selection and a browser-saved cart. Customers can submit order requests with contact details and a delivery address. The shop owner signs into a separate dashboard to review and approve or reject requests. This website does not take payment.
+Responsive static storefront with English/German language selection, EUR/USD display, a dark theme, a searchable catalog, size selection and a browser-saved cart. The order-request flow is implemented but remains disabled until the seller completes the required setup and policies. The shop owner signs into a separate dashboard to review and approve or reject requests. This website does not take payment.
 
 ## Supabase order backend setup
 
@@ -50,7 +50,7 @@ GitHub Pages serves static files only. Orders and admin authentication require y
 - Only a Supabase Auth user whose UUID is listed in `admin_users` can read orders. That user can change a pending order to `approved` or `rejected`; reviewed time and reviewer UUID are recorded.
 - Contact data is personal information. The checkout explains that the name, email and/or phone number, delivery address and order go to the Supabase-hosted database; a required consent checkbox is included. Complete the privacy policy before enabling the form.
 - Database access is controlled in Supabase, not by hiding `admin.html`. Anyone may open the sign-in page, but only the allowlisted account can read or review orders. The browser contains only the public anon/publishable key; the service-role key is never used.
-- Store order prices are illustrative EUR amounts; USD conversion uses the static demo rate `usdPerEur: 1.08` in `config.js`. Replace demo products/prices and update the exchange rate manually before launch; it is not a live quote.
+- Most catalog entries are demo products with illustrative prices. The contrast-panel flared trousers listing is a made-to-order preview priced at €79 for the item only; delivery and import charges are excluded, and no delivery time is promised. USD conversion uses the static rate `usdPerEur: 1.08` in `config.js`; it is not a live quote. Update the exchange rate manually.
 - Supabase Free has usage, storage and service limits and may change its plan terms. Public order forms can attract spam; monitor submissions and enable an appropriate CAPTCHA/rate-limit strategy if needed. Do not describe the setup as unlimited.
 
 ### Optional messenger checkout

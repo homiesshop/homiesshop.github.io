@@ -2,7 +2,8 @@
 
 // Website orders require a Supabase project and a completed privacy policy URL.
 // Set checkoutMode to "messenger" to use the optional Telegram/WhatsApp checkout.
-// Prices below are illustrative EUR amounts; update this static USD-per-EUR rate manually.
+// Demo products have example prices; the trouser listing has a confirmed item price.
+// Update this static USD-per-EUR rate manually.
 const STORE_CONFIG = window.HOMIESSHOP_CONFIG || {};
 
 const PRODUCTS = [
@@ -46,6 +47,41 @@ const PRODUCTS = [
     description: {
       en: "Straight-leg trousers with practical pockets and a little extra room. Fit details are illustrative.",
       de: "Gerade geschnittene Hose mit praktischen Taschen und etwas mehr Bewegungsfreiheit. Die Passform ist beispielhaft."
+    }
+  },
+  {
+    id: "contrast-panel-trousers",
+    name: { en: "Contrast-Panel Flared Trousers", de: "Schlaghose mit Kontrastpaneelen" },
+    category: "bottoms",
+    categoryLabel: { en: "Bottoms · made to order", de: "Hose · auf Bestellung" },
+    priceEur: 79,
+    badge: { en: "Made to order", de: "Auf Bestellung" },
+    sizes: ["S", "M", "L", "XL"],
+    image: "images/products/contrast-panel-trousers-model.jpg",
+    images: [
+      "images/products/contrast-panel-trousers-front.jpg",
+      "images/products/contrast-panel-trousers-back.jpg",
+      "images/products/contrast-panel-trousers-model.jpg"
+    ],
+    imageAlt: {
+      en: [
+        "Front view of the black-and-white contrast-panel trousers",
+        "Back view of the black-and-white contrast-panel trousers",
+        "Model wearing the black-and-white contrast-panel trousers"
+      ],
+      de: [
+        "Vorderansicht der schwarz-weißen Hose mit Kontrastpaneelen",
+        "Rückansicht der schwarz-weißen Hose mit Kontrastpaneelen",
+        "Model trägt die schwarz-weiße Hose mit Kontrastpaneelen"
+      ]
+    },
+    orderInfo: {
+      en: "Made to order from China after an order is confirmed. €79 is the item price only; delivery and import charges are not included. Delivery timing and final import terms are not confirmed. Online ordering is not available yet.",
+      de: "Auf Bestellung aus China nach Bestätigung der Bestellung. 79 € gelten nur für den Artikel; Versand- und Einfuhrkosten sind nicht enthalten. Lieferzeit und endgültige Einfuhrbedingungen sind noch nicht bestätigt. Online-Bestellungen sind derzeit nicht möglich."
+    },
+    description: {
+      en: "Black-and-white contrast panels with a flared leg.\n\nSupplier size chart (cm):\nS: length 109 · waist 74 · hip 96 · thigh 59\nM: length 111 · waist 77 · hip 99 · thigh 61\nL: length 113 · waist 80 · hip 102 · thigh 63\nXL: length 115 · waist 83 · hip 105 · thigh 65",
+      de: "Schwarz-weiße Kontrastpaneele und ausgestelltes Bein.\n\nGrößentabelle des Anbieters (cm):\nS: Länge 109 · Taille 74 · Hüfte 96 · Oberschenkel 59\nM: Länge 111 · Taille 77 · Hüfte 99 · Oberschenkel 61\nL: Länge 113 · Taille 80 · Hüfte 102 · Oberschenkel 63\nXL: Länge 115 · Taille 83 · Hüfte 105 · Oberschenkel 65"
     }
   },
   {
@@ -124,7 +160,7 @@ const TEXT = {
   en: {
     documentTitle: "Homiesshop — Vintage with a past",
     metaDescription: "Homiesshop — archival silhouettes, vintage textures, and clothes with character.",
-    demoBanner: "Demo store · products, photos and prices are examples",
+    demoBanner: "Demo collection · online orders are currently unavailable",
     navCatalog: "Collection",
     navAbout: "Our story",
     navDelivery: "Ordering",
@@ -136,10 +172,10 @@ const TEXT = {
     heroCopy: "Archival silhouettes, found textures, and clothes ready to become part of your story.",
     heroButton: "Explore the collection",
     heroMetaCollection: "Selection 01 / 2026",
-    heroMetaOrder: "Online ordering",
+    heroMetaOrder: "Orders are not open yet",
     catalogEyebrow: "Selected by hand",
     catalogTitle: "New finds",
-    catalogNote: "A small demo selection.<br>Replace products before launch.",
+    catalogNote: "Demo pieces and made-to-order previews.<br>Online orders are currently unavailable.",
     categoryAll: "All",
     categoryOuterwear: "Outerwear",
     categoryTops: "Tops",
@@ -159,12 +195,12 @@ const TEXT = {
     storyCaption: "Found. Reimagined. Yours.",
     service1Title: "Choose your piece",
     service1Copy: "Add your favourite to the cart and choose a size.",
-    service2Title: "Message us",
-    service2Copy: "Send an order request. We’ll review availability and get back to you to confirm.",
-    service3Title: "Confirm the details",
-    service3Copy: "Availability, delivery and payment are agreed in chat before purchase.",
-    contactQuestion: "Need help finding the right piece?",
-    contactLink: "Send an order request",
+    service2Title: "Ordering is closed",
+    service2Copy: "Online order requests are not being accepted yet. Check back after the shop is ready.",
+    service3Title: "Before launch",
+    service3Copy: "Delivery and payment terms will be published before ordering opens.",
+    contactQuestion: "Browsing the collection?",
+    contactLink: "Explore the collection",
     footerTagline: "Vintage with a past. Style is yours.",
     footerCopyright: "© 2026 · Demo store",
     chooseSize: "Choose a size",
@@ -225,7 +261,7 @@ const TEXT = {
   de: {
     documentTitle: "Homiesshop — Vintage mit Geschichte",
     metaDescription: "Homiesshop — Archiv-Silhouetten, Vintage-Texturen und Kleidung mit Charakter.",
-    demoBanner: "Demo-Shop · Produkte, Bilder und Preise sind Beispiele",
+    demoBanner: "Demo-Kollektion · Online-Bestellungen sind derzeit nicht möglich",
     navCatalog: "Kollektion",
     navAbout: "Über uns",
     navDelivery: "Bestellung",
@@ -237,10 +273,10 @@ const TEXT = {
     heroCopy: "Archiv-Silhouetten, besondere Texturen und Kleidung, die Teil deiner Geschichte wird.",
     heroButton: "Kollektion entdecken",
     heroMetaCollection: "Auswahl 01 / 2026",
-    heroMetaOrder: "Online bestellen",
+    heroMetaOrder: "Bestellungen sind noch geschlossen",
     catalogEyebrow: "Handverlesen",
     catalogTitle: "Neue Fundstücke",
-    catalogNote: "Eine kleine Demo-Auswahl.<br>Vor dem Start Produkte ersetzen.",
+    catalogNote: "Demo-Artikel und Vorschau für Bestellungen.<br>Online-Bestellungen sind derzeit nicht möglich.",
     categoryAll: "Alle",
     categoryOuterwear: "Jacken",
     categoryTops: "Oberteile",
@@ -260,12 +296,12 @@ const TEXT = {
     storyCaption: "Gefunden. Neu gedacht. Deins.",
     service1Title: "Stück auswählen",
     service1Copy: "Lege deinen Favoriten in den Warenkorb und wähle eine Größe.",
-    service2Title: "Schreib uns",
-    service2Copy: "Sende eine Bestellanfrage. Wir prüfen die Verfügbarkeit und melden uns zur Bestätigung.",
-    service3Title: "Details abstimmen",
-    service3Copy: "Verfügbarkeit, Versand und Zahlung stimmen wir vor dem Kauf im Chat ab.",
-    contactQuestion: "Brauchst du Hilfe bei der Auswahl?",
-    contactLink: "Bestellanfrage senden",
+    service2Title: "Bestellannahme geschlossen",
+    service2Copy: "Online-Bestellanfragen werden noch nicht angenommen. Schau wieder vorbei, sobald der Shop bereit ist.",
+    service3Title: "Vor dem Start",
+    service3Copy: "Versand- und Zahlungsbedingungen werden vor Öffnung der Bestellungen veröffentlicht.",
+    contactQuestion: "Möchtest du die Kollektion ansehen?",
+    contactLink: "Kollektion entdecken",
     footerTagline: "Vintage mit Geschichte. Dein Stil.",
     footerCopyright: "© 2026 · Demo-Shop",
     chooseSize: "Größe auswählen",
@@ -369,6 +405,7 @@ const validPrivacyPolicyUrl = getPrivacyPolicyUrl();
 let activeCategory = "all";
 let selectedProduct = null;
 let selectedSize = "";
+let selectedImageIndex = 0;
 let toastTimer;
 let orderSubmitting = false;
 let formStatusKey = "";
@@ -440,6 +477,10 @@ function localized(value) {
   return value[language];
 }
 
+function localizedImageAlt(product, index = 0) {
+  return product.imageAlt?.[language]?.[index] || localized(product.name);
+}
+
 function renderStaticText() {
   document.documentElement.lang = language;
   document.title = text("documentTitle");
@@ -485,7 +526,7 @@ function renderProducts() {
   productGrid.innerHTML = products.map((product) => `
     <article class="product-card">
       <div class="product-image-wrap">
-        <div class="product-image" role="img" aria-label="${localized(product.name)}" style="background-image: url('${product.image}')"></div>
+        <div class="product-image" role="img" aria-label="${localizedImageAlt(product, product.images ? product.images.indexOf(product.image) : 0)}" style="background-image: url('${product.image}')"></div>
         <span class="product-badge">${localized(product.badge)}</span>
         <button class="button button-light product-quick-add" type="button" data-product="${product.id}">${text("chooseSize")} <span aria-hidden="true">↗</span></button>
       </div>
@@ -504,10 +545,15 @@ function openProduct(productId, preserveSize = false) {
   selectedProduct = getProduct(productId);
   if (!selectedProduct) return;
   if (!preserveSize || !selectedProduct.sizes.includes(selectedSize)) selectedSize = selectedProduct.sizes[0];
-  document.querySelector("#product-dialog-image").style.backgroundImage = `url('${selectedProduct.image}')`;
+  if (!preserveSize) selectedImageIndex = 0;
+  renderProductGallery();
   document.querySelector("#product-dialog-category").textContent = localized(selectedProduct.categoryLabel);
   document.querySelector("#product-dialog-title").textContent = localized(selectedProduct.name);
   document.querySelector("#product-dialog-price").textContent = formatMoney(selectedProduct.priceEur);
+  const orderNote = document.querySelector("#product-order-note");
+  orderNote.textContent = selectedProduct.orderInfo ? localized(selectedProduct.orderInfo) : "";
+  orderNote.hidden = !selectedProduct.orderInfo;
+  document.querySelector(".demo-disclaimer").hidden = Boolean(selectedProduct.orderInfo);
   document.querySelector("#product-dialog-description").textContent = localized(selectedProduct.description);
   document.querySelector("#size-list").innerHTML = selectedProduct.sizes.map((size) => `
     <label class="size-option">
@@ -516,6 +562,30 @@ function openProduct(productId, preserveSize = false) {
     </label>
   `).join("");
   if (!productDialog.open) openDialog(productDialog);
+}
+
+function renderProductGallery() {
+  const images = selectedProduct.images || [selectedProduct.image];
+  selectedImageIndex = Math.min(selectedImageIndex, images.length - 1);
+  const mainImage = document.querySelector("#product-dialog-image");
+  mainImage.style.backgroundImage = `url('${images[selectedImageIndex]}')`;
+  mainImage.setAttribute("aria-label", localizedImageAlt(selectedProduct, selectedImageIndex));
+
+  const thumbnails = document.querySelector("#product-thumbnails");
+  thumbnails.replaceChildren();
+  thumbnails.hidden = images.length < 2;
+  thumbnails.setAttribute("aria-label", language === "de" ? "Produktfotos" : "Product photos");
+  images.forEach((image, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "product-thumbnail";
+    button.dataset.photoIndex = String(index);
+    button.style.backgroundImage = `url('${image}')`;
+    button.setAttribute("aria-label", localizedImageAlt(selectedProduct, index));
+    button.setAttribute("aria-pressed", String(index === selectedImageIndex));
+    button.classList.toggle("is-active", index === selectedImageIndex);
+    thumbnails.append(button);
+  });
 }
 
 function renderCart() {
@@ -527,7 +597,7 @@ function renderCart() {
     const product = getProduct(item.id);
     return `
       <article class="cart-line">
-        <div class="cart-line-image" role="img" aria-label="${localized(product.name)}" style="background-image: url('${product.image}')"></div>
+        <div class="cart-line-image" role="img" aria-label="${localizedImageAlt(product, product.images ? product.images.indexOf(product.image) : 0)}" style="background-image: url('${product.image}')"></div>
         <div class="cart-line-details">
           <h3>${localized(product.name)}</h3>
           <p>${text("sizeLine")} ${item.size}</p>
@@ -780,6 +850,13 @@ currencySelect.addEventListener("change", () => {
 productGrid.addEventListener("click", (event) => {
   const button = event.target.closest("[data-product]");
   if (button) openProduct(button.dataset.product);
+});
+
+document.querySelector("#product-thumbnails").addEventListener("click", (event) => {
+  const button = event.target.closest("[data-photo-index]");
+  if (!button || !selectedProduct) return;
+  selectedImageIndex = Number(button.dataset.photoIndex);
+  renderProductGallery();
 });
 
 document.querySelector("#size-list").addEventListener("change", (event) => {
