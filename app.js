@@ -2,7 +2,8 @@
 
 // Website orders require a Supabase project and a completed privacy policy URL.
 // Set checkoutMode to "messenger" to use the optional Telegram/WhatsApp checkout.
-// Demo products have example prices; the trouser listing has a confirmed item price.
+// Demo products have example prices; confirmed item prices use the approximate
+// CNY/EUR rate stated in their localized price notes.
 // Update this static USD-per-EUR rate manually.
 const STORE_CONFIG = window.HOMIESSHOP_CONFIG || {};
 
@@ -54,7 +55,11 @@ const PRODUCTS = [
     name: { en: "Contrast-Panel Flared Trousers", de: "Schlaghose mit Kontrastpaneelen" },
     category: "bottoms",
     categoryLabel: { en: "Bottoms", de: "Hose" },
-    priceEur: 79,
+    priceEur: 77.99,
+    priceNote: {
+      en: "Approximate item price at 1 EUR ≈ ¥7.4972; shipping is not included.",
+      de: "Ungefährer Artikelpreis bei 1 EUR ≈ ¥7,4972; Versandkosten sind nicht enthalten."
+    },
     badge: { en: "New arrival", de: "Neu" },
     isDemo: false,
     sizes: ["S", "M", "L", "XL"],
@@ -83,35 +88,170 @@ const PRODUCTS = [
   },
   {
     id: "distressed-zip-hoodie",
-    name: { en: "Distressed Zip Hoodie", de: "Zip-Hoodie mit Distressed-Details" },
+    name: { en: "Distressed Graphic Zip Hoodie", de: "Distressed-Zip-Hoodie mit Schriftprint" },
     category: "tops",
     categoryLabel: { en: "Top · zip hoodie", de: "Oberteil · Zip-Hoodie" },
-    priceEur: 66.68,
+    priceEur: 61.99,
     priceNote: {
-      en: "Item price; shipping is not included.",
-      de: "Artikelpreis; Versandkosten sind nicht enthalten."
+      en: "Approximate item price at 1 EUR ≈ ¥7.4972; shipping is not included.",
+      de: "Ungefährer Artikelpreis bei 1 EUR ≈ ¥7,4972; Versandkosten sind nicht enthalten."
     },
     badge: { en: "New arrival", de: "Neu" },
     isDemo: false,
     sizes: ["S", "M", "L", "XL"],
-    image: "images/products/distressed-zip-hoodie-back.jpg",
+    image: "images/products/distressed-zip-hoodie-front.jpg",
     images: [
-      "images/products/distressed-zip-hoodie-back.jpg",
-      "images/products/distressed-zip-hoodie-hood-detail.jpg"
+      "images/products/distressed-zip-hoodie-front.jpg",
+      "images/products/distressed-zip-hoodie-back-new.jpg",
+      "images/products/distressed-zip-hoodie-hood-detail-new.jpg"
     ],
     imageAlt: {
       en: [
+        "Front view of the black distressed zip hoodie with a text graphic",
         "Back view of a black distressed zip hoodie",
         "Close-up of the hood and distressed fabric"
       ],
       de: [
+        "Vorderansicht des schwarzen Zip-Hoodies mit Schriftmotiv",
         "Rückansicht eines schwarzen Zip-Hoodies mit Distressed-Details",
         "Detailansicht der Kapuze und des Used-Looks"
       ]
     },
     description: {
-      en: "Black zip hoodie with a washed, distressed finish, front pockets and graphic lettering.\n\nSize chart (cm):\nS: length 67 · chest 64 · shoulder 64 · sleeve 59\nM: length 69 · chest 66 · shoulder 66 · sleeve 60\nL: length 72 · chest 69 · shoulder 68 · sleeve 61\nXL: length 74 · chest 71 · shoulder 70 · sleeve 62\n\nMeasurements are listed as provided; compare them with a similar garment for fit.",
+      en: "Black zip hoodie with a washed, distressed finish, front pockets and a text graphic.\n\nSize chart (cm):\nS: length 67 · chest 64 · shoulder 64 · sleeve 59\nM: length 69 · chest 66 · shoulder 66 · sleeve 60\nL: length 72 · chest 69 · shoulder 68 · sleeve 61\nXL: length 74 · chest 71 · shoulder 70 · sleeve 62\n\nMeasurements are listed as provided; compare them with a similar garment for fit.",
       de: "Schwarzer Zip-Hoodie mit verwaschenem Used-Look, Fronttaschen und Schriftmotiv.\n\nGrößentabelle (cm):\nS: Länge 67 · Brust 64 · Schulter 64 · Ärmel 59\nM: Länge 69 · Brust 66 · Schulter 66 · Ärmel 60\nL: Länge 72 · Brust 69 · Schulter 68 · Ärmel 61\nXL: Länge 74 · Brust 71 · Schulter 70 · Ärmel 62\n\nDie Maße sind wie angegeben übernommen; vergleiche sie für die Passform mit einem ähnlichen Kleidungsstück."
+    }
+  },
+  {
+    id: "graphic-long-sleeve",
+    name: { en: "Graphic Long-Sleeve Tee", de: "Langarmshirt mit Schriftprint" },
+    category: "tops",
+    categoryLabel: { en: "Top · long sleeve", de: "Oberteil · Langarm" },
+    priceEur: 46.99,
+    priceNote: {
+      en: "Approximate item price at 1 EUR ≈ ¥7.4972; shipping is not included.",
+      de: "Ungefährer Artikelpreis bei 1 EUR ≈ ¥7,4972; Versandkosten sind nicht enthalten."
+    },
+    badge: { en: "New arrival", de: "Neu" },
+    isDemo: false,
+    sizes: ["S", "M", "L", "XL"],
+    image: "images/products/graphic-long-sleeve-front.jpg",
+    images: [
+      "images/products/graphic-long-sleeve-front.jpg",
+      "images/products/graphic-long-sleeve-back.jpg"
+    ],
+    imageAlt: {
+      en: [
+        "Front view of a cream long-sleeve tee with a text graphic",
+        "Back view of the cream long-sleeve tee"
+      ],
+      de: [
+        "Vorderansicht eines cremefarbenen Langarmshirts mit Schriftmotiv",
+        "Rückansicht des cremefarbenen Langarmshirts"
+      ]
+    },
+    description: {
+      en: "Cream long-sleeve tee with a relaxed shape and a bold text graphic. Available in sizes S–XL.",
+      de: "Cremefarbenes Langarmshirt mit lockerer Passform und markantem Schriftmotiv. Erhältlich in den Größen S–XL."
+    }
+  },
+  {
+    id: "grey-graphic-zip-hoodie",
+    name: { en: "Grey Graphic Zip Hoodie", de: "Grauer Zip-Hoodie mit Print" },
+    category: "tops",
+    categoryLabel: { en: "Top · zip hoodie", de: "Oberteil · Zip-Hoodie" },
+    priceEur: 91.99,
+    priceNote: {
+      en: "Approximate item price at 1 EUR ≈ ¥7.4972; shipping is not included.",
+      de: "Ungefährer Artikelpreis bei 1 EUR ≈ ¥7,4972; Versandkosten sind nicht enthalten."
+    },
+    badge: { en: "New arrival", de: "Neu" },
+    isDemo: false,
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    image: "images/products/grey-graphic-zip-hoodie-front.jpg",
+    images: [
+      "images/products/grey-graphic-zip-hoodie-front.jpg",
+      "images/products/grey-graphic-zip-hoodie-back.jpg"
+    ],
+    imageAlt: {
+      en: [
+        "Front view of a grey zip hoodie with a red graphic",
+        "Back view of the grey zip hoodie"
+      ],
+      de: [
+        "Vorderansicht eines grauen Zip-Hoodies mit rotem Motiv",
+        "Rückansicht des grauen Zip-Hoodies"
+      ]
+    },
+    description: {
+      en: "Grey zip hoodie with a red graphic and a relaxed silhouette.\n\nSize chart (cm):\nS: length 68 · chest 65 · shoulder 67 · sleeve 54\nM: length 70 · chest 67 · shoulder 69 · sleeve 55\nL: length 72 · chest 69 · shoulder 71 · sleeve 56\nXL: length 74 · chest 71 · shoulder 73 · sleeve 57\nXXL: length 76 · chest 73 · shoulder 75 · sleeve 58\n\nMeasurements are listed as provided; compare them with a similar garment for fit.",
+      de: "Grauer Zip-Hoodie mit rotem Motiv und lockerer Silhouette.\n\nGrößentabelle (cm):\nS: Länge 68 · Brust 65 · Schulter 67 · Ärmel 54\nM: Länge 70 · Brust 67 · Schulter 69 · Ärmel 55\nL: Länge 72 · Brust 69 · Schulter 71 · Ärmel 56\nXL: Länge 74 · Brust 71 · Schulter 73 · Ärmel 57\nXXL: Länge 76 · Brust 73 · Schulter 75 · Ärmel 58\n\nDie Maße sind wie angegeben übernommen; vergleiche sie für die Passform mit einem ähnlichen Kleidungsstück."
+    }
+  },
+  {
+    id: "black-diagonal-zip-jacket",
+    name: { en: "Black Diagonal-Zip Jacket", de: "Schwarze Jacke mit Diagonalreißverschluss" },
+    category: "outerwear",
+    categoryLabel: { en: "Outerwear · jacket", de: "Jacke · Outerwear" },
+    priceEur: 65.99,
+    priceNote: {
+      en: "Approximate item price at 1 EUR ≈ ¥7.4972; shipping is not included.",
+      de: "Ungefährer Artikelpreis bei 1 EUR ≈ ¥7,4972; Versandkosten sind nicht enthalten."
+    },
+    badge: { en: "New arrival", de: "Neu" },
+    isDemo: false,
+    sizes: ["S", "M", "L", "XL"],
+    image: "images/products/black-diagonal-zip-jacket-front.jpg",
+    images: [
+      "images/products/black-diagonal-zip-jacket-front.jpg",
+      "images/products/black-diagonal-zip-jacket-detail.jpg"
+    ],
+    imageAlt: {
+      en: [
+        "Black jacket with a diagonal zipper, laid flat",
+        "Close-up of the black jacket's zipper and collar"
+      ],
+      de: [
+        "Schwarze Jacke mit diagonalem Reißverschluss, flach ausgelegt",
+        "Detailansicht des Reißverschlusses und Kragens"
+      ]
+    },
+    description: {
+      en: "Black cropped jacket with a collar, zip pockets and an angled front zipper. Available in sizes S–XL.",
+      de: "Schwarze kurze Jacke mit Kragen, Reißverschlusstaschen und schrägem Frontreißverschluss. Erhältlich in den Größen S–XL."
+    }
+  },
+  {
+    id: "black-contrast-hood-jacket",
+    name: { en: "Black Contrast-Hood Jacket", de: "Schwarze Jacke mit Kontrastkapuze" },
+    category: "outerwear",
+    categoryLabel: { en: "Outerwear · jacket", de: "Jacke · Outerwear" },
+    priceEur: 80.99,
+    priceNote: {
+      en: "Approximate item price at 1 EUR ≈ ¥7.4972; shipping is not included.",
+      de: "Ungefährer Artikelpreis bei 1 EUR ≈ ¥7,4972; Versandkosten sind nicht enthalten."
+    },
+    badge: { en: "New arrival", de: "Neu" },
+    isDemo: false,
+    sizes: ["S", "M", "L", "XL"],
+    image: "images/products/black-contrast-hood-jacket-front.jpg",
+    images: [
+      "images/products/black-contrast-hood-jacket-front.jpg",
+      "images/products/black-contrast-hood-jacket-detail.jpg"
+    ],
+    imageAlt: {
+      en: [
+        "Black jacket with a light contrasting hood",
+        "Close-up of the contrasting hood and front closure"
+      ],
+      de: [
+        "Schwarze Jacke mit heller Kontrastkapuze",
+        "Detailansicht der Kontrastkapuze und des Frontverschlusses"
+      ]
+    },
+    description: {
+      en: "Black jacket with a light contrasting hood and zip pockets.\n\nSize chart (cm):\nS: length 53 · chest 78 · waist 66 · sleeve 60\nM: length 54 · chest 82 · waist 70 · sleeve 61\nL: length 55 · chest 86 · waist 74 · sleeve 62\nXL: length 56 · chest 90 · waist 78 · sleeve 63\n\nMeasurements are listed as provided; compare them with a similar garment for fit.",
+      de: "Schwarze Jacke mit heller Kontrastkapuze und Reißverschlusstaschen.\n\nGrößentabelle (cm):\nS: Länge 53 · Brust 78 · Taille 66 · Ärmel 60\nM: Länge 54 · Brust 82 · Taille 70 · Ärmel 61\nL: Länge 55 · Brust 86 · Taille 74 · Ärmel 62\nXL: Länge 56 · Brust 90 · Taille 78 · Ärmel 63\n\nDie Maße sind wie angegeben übernommen; vergleiche sie für die Passform mit einem ähnlichen Kleidungsstück."
     }
   },
   {
@@ -190,7 +330,7 @@ const TEXT = {
   en: {
     documentTitle: "Homiesshop — Vintage with a past",
     metaDescription: "Homiesshop — archival silhouettes, vintage textures, and clothes with character.",
-    demoBanner: "Demo collection · online orders are currently unavailable",
+    demoBanner: "Collection preview · online orders are currently unavailable",
     navCatalog: "Collection",
     navAbout: "Our story",
     navDelivery: "Ordering",
@@ -205,7 +345,7 @@ const TEXT = {
     heroMetaOrder: "Orders are not open yet",
     catalogEyebrow: "Selected by hand",
     catalogTitle: "New finds",
-    catalogNote: "Demo pieces and new arrivals.<br>Online orders are currently unavailable.",
+    catalogNote: "Sample pieces and selected new arrivals.<br>Online orders are currently unavailable.",
     categoryAll: "All",
     categoryOuterwear: "Outerwear",
     categoryTops: "Tops",
@@ -232,7 +372,7 @@ const TEXT = {
     contactQuestion: "Browsing the collection?",
     contactLink: "Explore the collection",
     footerTagline: "Vintage with a past. Style is yours.",
-    footerCopyright: "© 2026 · Demo store",
+    footerCopyright: "© 2026 · Homiesshop",
     chooseSize: "Choose a size",
     addToCart: "Add to cart",
     demoProductDisclaimer: "Demo item: availability and details are illustrative.",
@@ -291,7 +431,7 @@ const TEXT = {
   de: {
     documentTitle: "Homiesshop — Vintage mit Geschichte",
     metaDescription: "Homiesshop — Archiv-Silhouetten, Vintage-Texturen und Kleidung mit Charakter.",
-    demoBanner: "Demo-Kollektion · Online-Bestellungen sind derzeit nicht möglich",
+    demoBanner: "Kollektion · Online-Bestellungen sind derzeit nicht möglich",
     navCatalog: "Kollektion",
     navAbout: "Über uns",
     navDelivery: "Bestellung",
@@ -306,7 +446,7 @@ const TEXT = {
     heroMetaOrder: "Bestellungen sind noch geschlossen",
     catalogEyebrow: "Handverlesen",
     catalogTitle: "Neue Fundstücke",
-    catalogNote: "Demo-Artikel und Neuheiten.<br>Online-Bestellungen sind derzeit nicht möglich.",
+    catalogNote: "Beispielartikel und ausgewählte Neuheiten.<br>Online-Bestellungen sind derzeit nicht möglich.",
     categoryAll: "Alle",
     categoryOuterwear: "Jacken",
     categoryTops: "Oberteile",
@@ -333,7 +473,7 @@ const TEXT = {
     contactQuestion: "Möchtest du die Kollektion ansehen?",
     contactLink: "Kollektion entdecken",
     footerTagline: "Vintage mit Geschichte. Dein Stil.",
-    footerCopyright: "© 2026 · Demo-Shop",
+    footerCopyright: "© 2026 · Homiesshop",
     chooseSize: "Größe auswählen",
     addToCart: "In den Warenkorb",
     demoProductDisclaimer: "Demo-Produkt: Verfügbarkeit und Angaben sind beispielhaft.",
@@ -562,7 +702,7 @@ function renderProducts() {
       </div>
       <div class="product-info">
         <div><h3>${localized(product.name)}</h3><span class="product-category">${localized(product.categoryLabel)}</span></div>
-        <p class="product-price">${formatMoney(product.priceEur)}</p>
+        <p class="product-price${product.priceNote ? " is-approximate" : ""}">${formatMoney(product.priceEur)}${product.priceNote ? `<span class="visually-hidden">${language === "de" ? " ungefährer Preis" : " approximate price"}</span>` : ""}</p>
       </div>
     </article>
   `).join("");
