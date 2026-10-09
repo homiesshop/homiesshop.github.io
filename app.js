@@ -63,11 +63,10 @@ const PRODUCTS = [
     badge: { en: "New arrival", de: "Neu" },
     isDemo: false,
     sizes: ["S", "M", "L", "XL"],
-    image: "images/products/contrast-panel-trousers-model.jpg",
+    image: "images/products/contrast-panel-trousers-front.jpg",
     images: [
       "images/products/contrast-panel-trousers-front.jpg",
       "images/products/contrast-panel-trousers-back.jpg",
-      "images/products/contrast-panel-trousers-model.jpg",
       "images/products/O1CN01MZKZxJ1QZ0wcNuL3n_!!365081989.jpg",
       "images/products/O1CN01XZ1Lfv1QZ0w1xvm3o_!!365081989.jpg"
     ],
@@ -106,9 +105,7 @@ const PRODUCTS = [
       "images/products/distressed-zip-hoodie-front.jpg",
       "images/products/distressed-zip-hoodie-back-new.jpg",
       "images/products/distressed-zip-hoodie-hood-detail-new.jpg",
-      "images/products/O1CN01GJVTFMLJ4HJ4Swwv_!!3281198393.jpg",
-      "images/products/O1CN01IH3828KnG6F4Swwv_!!3281198393.jpg",
-      "images/products/O1CN01cqzIjWRiNfC4Swwv_!!3281198393.jpg"
+      "images/products/O1CN01IH3828KnG6F4Swwv_!!3281198393.jpg"
     ],
     imageAlt: {
       en: [
