@@ -67,7 +67,9 @@ const PRODUCTS = [
     images: [
       "images/products/contrast-panel-trousers-front.jpg",
       "images/products/contrast-panel-trousers-back.jpg",
-      "images/products/contrast-panel-trousers-model.jpg"
+      "images/products/contrast-panel-trousers-model.jpg",
+      "images/products/O1CN01MZKZxJ1QZ0wcNuL3n_!!365081989.jpg",
+      "images/products/O1CN01XZ1Lfv1QZ0w1xvm3o_!!365081989.jpg"
     ],
     imageAlt: {
       en: [
@@ -103,7 +105,10 @@ const PRODUCTS = [
     images: [
       "images/products/distressed-zip-hoodie-front.jpg",
       "images/products/distressed-zip-hoodie-back-new.jpg",
-      "images/products/distressed-zip-hoodie-hood-detail-new.jpg"
+      "images/products/distressed-zip-hoodie-hood-detail-new.jpg",
+      "images/products/O1CN01GJVTFMLJ4HJ4Swwv_!!3281198393.jpg",
+      "images/products/O1CN01IH3828KnG6F4Swwv_!!3281198393.jpg",
+      "images/products/O1CN01cqzIjWRiNfC4Swwv_!!3281198393.jpg"
     ],
     imageAlt: {
       en: [
@@ -138,7 +143,9 @@ const PRODUCTS = [
     image: "images/products/graphic-long-sleeve-front.jpg",
     images: [
       "images/products/graphic-long-sleeve-front.jpg",
-      "images/products/graphic-long-sleeve-back.jpg"
+      "images/products/graphic-long-sleeve-back.jpg",
+      "images/products/O1CN01Kb9NN11NMEyeFA2Yr_!!1701471555.jpg",
+      "images/products/O1CN01nlgL2G1NMEydJhzgu_!!1701471555.jpg"
     ],
     imageAlt: {
       en: [
@@ -171,7 +178,10 @@ const PRODUCTS = [
     image: "images/products/grey-graphic-zip-hoodie-front.jpg",
     images: [
       "images/products/grey-graphic-zip-hoodie-front.jpg",
-      "images/products/grey-graphic-zip-hoodie-back.jpg"
+      "images/products/grey-graphic-zip-hoodie-back.jpg",
+      "images/products/O1CN01Lovxeq5CE1K4Swwv_!!3281198393.jpg",
+      "images/products/O1CN01PdTjpi2Bs3KU3NA4e_!!3281198393.jpg",
+      "images/products/O1CN01uObNre2Bs3KUsaXPo_!!3281198393.jpg"
     ],
     imageAlt: {
       en: [
@@ -201,10 +211,13 @@ const PRODUCTS = [
     badge: { en: "New arrival", de: "Neu" },
     isDemo: false,
     sizes: ["S", "M", "L", "XL"],
-    image: "images/products/black-diagonal-zip-jacket-front.jpg",
+    image: "images/products/black-diagonal-zip-jacket-corrected.png",
     images: [
-      "images/products/black-diagonal-zip-jacket-front.jpg",
-      "images/products/black-diagonal-zip-jacket-detail.jpg"
+      "images/products/black-diagonal-zip-jacket-corrected.png",
+      "images/products/black-diagonal-zip-jacket-detail.jpg",
+      "images/products/O1CN016LbrC11QZ0wbmY7ZL_!!365081989.jpg",
+      "images/products/O1CN0181jEt21QZ0wbmZvnR_!!365081989.jpg",
+      "images/products/O1CN01hH2YmC1QZ0w1uZOhG_!!365081989.jpg"
     ],
     imageAlt: {
       en: [
@@ -237,7 +250,10 @@ const PRODUCTS = [
     image: "images/products/black-contrast-hood-jacket-front.jpg",
     images: [
       "images/products/black-contrast-hood-jacket-front.jpg",
-      "images/products/black-contrast-hood-jacket-detail.jpg"
+      "images/products/black-contrast-hood-jacket-detail.jpg",
+      "images/products/O1CN01MZKZxJ1QZ0wcNuL3n_!!365081989.jpg",
+      "images/products/O1CN01hH2YmC1QZ0w1uZOhG_!!365081989.jpg",
+      "images/products/O1CN01zpq4HS1QZ0w3c4yGt_!!365081989.jpg"
     ],
     imageAlt: {
       en: [
@@ -528,6 +544,107 @@ const TEXT = {
     toastAdded: "In den Warenkorb gelegt.",
     toastCartSave: "Der Warenkorb bleibt nur bis zum Schließen dieser Seite verfügbar.",
     close: "Schließen"
+  },
+  ru: {
+    documentTitle: "Homiesshop — Винтаж с историей",
+    metaDescription: "Homiesshop — архивные силуэты, винтажные фактуры и одежда с характером.",
+    demoBanner: "Превью коллекции · онлайн-заказы временно недоступны",
+    navCatalog: "Коллекция",
+    navAbout: "О нас",
+    navDelivery: "Заказ",
+    cart: "Корзина",
+    languageLabel: "Язык",
+    currencyLabel: "Валюта",
+    heroEyebrow: "Вечные вещи · коллекция 01",
+    heroTitle: "Каждая вещь<br>имеет <em>прошлое.</em>",
+    heroCopy: "Архивные силуэты, найденные текстуры и одежда, которая станет частью вашей истории.",
+    heroButton: "Посмотреть коллекцию",
+    heroMetaCollection: "Выборка 01 / 2026",
+    heroMetaOrder: "Заказы пока закрыты",
+    catalogEyebrow: "Подобрано вручную",
+    catalogTitle: "Новые находки",
+    catalogNote: "Пробные вещи и выбранные новинки.<br>Онлайн-заказы временно недоступны.",
+    categoryAll: "Все",
+    categoryOuterwear: "Верхняя одежда",
+    categoryTops: "Топы",
+    categoryBottoms: "Низ",
+    categoryShoes: "Обувь",
+    searchLabel: "Поиск товаров",
+    searchPlaceholder: "Найти вещь",
+    sortLabel: "Сортировать товары",
+    sortFeatured: "Сначала рекомендуемые",
+    sortPriceAsc: "Цена: по возрастанию",
+    sortPriceDesc: "Цена: по убыванию",
+    emptySearch: "Ничего не найдено. Попробуйте другой запрос или фильтр.",
+    results: (count) => `${count} ${count === 1 ? "вещь" : count < 5 ? "вещи" : "вещей"} найдено`,
+    storyEyebrow: "Больше, чем одежда",
+    storyTitle: "Найди то, что подходит именно тебе.<br><em>Носи по-своему.</em>",
+    storyCopy: "Нам нравятся вещи с характером: выцветший хлопок, свободная посадка и детали, которые становятся заметнее со временем.",
+    storyCaption: "Найдено. Пересобрано. Твоё.",
+    service1Title: "Выбери вещь",
+    service1Copy: "Добавь понравившуюся в корзину и выбери размер.",
+    service2Title: "Приём заказов закрыт",
+    service2Copy: "Онлайн-запросы на заказ пока не принимаются. Загляните позже, когда магазин будет готов.",
+    service3Title: "До запуска",
+    service3Copy: "Условия доставки и оплаты будут опубликованы до открытия заказов.",
+    contactQuestion: "Смотрите коллекцию?",
+    contactLink: "Посмотреть коллекцию",
+    footerTagline: "Винтаж с прошлым. Стиль — ваш.",
+    footerCopyright: "© 2026 · Homiesshop",
+    chooseSize: "Выберите размер",
+    addToCart: "В корзину",
+    demoProductDisclaimer: "Демо-товар: наличие и детали являются примерными.",
+    cartEyebrow: "Ваши находки",
+    cartEmpty: "Здесь пока пусто.",
+    findPiece: "Найти вещь",
+    estimatedTotal: "Примерная сумма",
+    cartPaymentNote: "Оплата и доставка согласовываются отдельно после подтверждения заказа.",
+    checkoutButton: "Продолжить оформление",
+    checkoutEyebrow: "Остался один шаг",
+    checkoutTitle: "Оформить заказ",
+    checkoutIntro: "Укажите контакты и адрес доставки. Мы проверим запрос и подтвердим заказ вручную. Оплата здесь не принимается.",
+    messengerCheckoutIntro: "Проверьте заказ и выберите мессенджер. Доступность, доставка и оплата подтверждаются продавцом в чате.",
+    namePrompt: "Полное имя",
+    optional: "(необязательно)",
+    namePlaceholder: "Имя",
+    emailLabel: "Электронная почта",
+    emailPlaceholder: "you@example.com",
+    phoneLabel: "Телефон",
+    phonePlaceholder: "+7 999 123 4567",
+    contactRequiredHint: "Укажите хотя бы адрес электронной почты или номер телефона.",
+    addressLabel: "Адрес доставки",
+    addressPlaceholder: "Улица, дом, индекс, город, страна",
+    orderNoteLabel: "Комментарий к заказу",
+    orderNotePlaceholder: "Необязательно",
+    privacyConsent: "Я согласен, что мои данные могут быть отправлены в Homiesshop через Supabase для обработки этого заказа.",
+    privacyNotice: "Имя, контакты, адрес доставки и информация о заказе передаются в базу данных заказов Homiesshop, расположенную на Supabase, и используются для обработки запроса. Оплата здесь не производится.",
+    privacyPolicyLink: "Прочитать политику конфиденциальности",
+    privacyPolicyMissing: "Продавец должен опубликовать актуальную политику конфиденциальности перед открытием заказов.",
+    submitOrder: "Отправить запрос",
+    formNotConfigured: "Онлайн-заказы ещё не настроены. Продавец должен настроить Supabase и опубликовать политику конфиденциальности. Заказ не отправлен.",
+    formSubmitPending: "Отправляем запрос…",
+    formSubmitSuccess: "Ваш запрос отправлен. Продавец проверит его и свяжется с вами для подтверждения заказа.",
+    formSubmitFailed: "Не удалось отправить запрос. Ничего не подтверждено; попробуйте позже или свяжитесь с продавцом.",
+    formContactValidation: "Укажите хотя бы корректный email или номер телефона.",
+    formMissingFields: "Заполните обязательные поля и подтвердите согласие на обработку данных.",
+    messengerModeNote: "Выбран режим оформления через мессенджер.",
+    sizeLine: "Размер:",
+    remove: "Удалить",
+    quantity: "Количество",
+    decreaseQuantity: "Уменьшить количество",
+    increaseQuantity: "Увеличить количество",
+    checkoutGreeting: "Здравствуйте! Я хотел бы узнать о заказе из Homiesshop:",
+    estimatedOrderTotal: "Примерная сумма:",
+    customerName: "Меня зовут:",
+    orderQuestion: "Пожалуйста, подтвердите наличие, доставку и оплату.",
+    writeTo: "Написать в",
+    notConfigured: "не настроено",
+    checkoutConfigured: "Ваше сообщение откроется в выбранном мессенджере. Заказ считается подтверждённым только после ответа продавца.",
+    checkoutNotConfigured: "Мессенджер ещё не настроен или контактные данные невалидны. Проверьте config.js; инструкция есть в README.",
+    toastChooseSize: "Сначала выберите размер.",
+    toastAdded: "Добавлено в корзину.",
+    toastCartSave: "Корзина будет доступна только до закрытия этой страницы.",
+    close: "Закрыть"
   }
 };
 
@@ -591,7 +708,7 @@ function readPreference(key, allowed, fallback) {
   }
 }
 
-let language = readPreference(LANGUAGE_KEY, ["en", "de"], "en");
+let language = readPreference(LANGUAGE_KEY, ["en", "de", "ru"], "ru");
 let currency = readPreference(CURRENCY_KEY, ["EUR", "USD"], "EUR");
 
 function savePreference(key, value) {
@@ -603,12 +720,13 @@ function savePreference(key, value) {
 }
 
 function text(key) {
-  return TEXT[language][key];
+  const bundle = TEXT[language] || TEXT.en;
+  return bundle[key] ?? TEXT.en[key];
 }
 
 function formatMoney(priceEur) {
   const amount = currency === "USD" ? priceEur * Number(STORE_CONFIG.usdPerEur) : priceEur;
-  const locale = language === "de" ? "de-DE" : "en-US";
+  const locale = language === "de" ? "de-DE" : language === "ru" ? "ru-RU" : "en-US";
   return new Intl.NumberFormat(locale, { style: "currency", currency, maximumFractionDigits: 2 }).format(amount);
 }
 
@@ -644,11 +762,13 @@ function getProduct(id) {
 }
 
 function localized(value) {
-  return value[language];
+  if (!value) return "";
+  if (typeof value === "string") return value;
+  return value[language] ?? value.en ?? value.de ?? Object.values(value)[0] ?? "";
 }
 
 function localizedImageAlt(product, index = 0) {
-  return product.imageAlt?.[language]?.[index] || localized(product.name);
+  return product.imageAlt?.[language]?.[index] || product.imageAlt?.en?.[index] || localized(product.name);
 }
 
 function renderStaticText() {
@@ -666,27 +786,27 @@ function renderStaticText() {
   document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
     element.placeholder = text(element.dataset.i18nPlaceholder);
   });
-  document.querySelector(".main-nav").setAttribute("aria-label", language === "de" ? "Hauptnavigation" : "Main navigation");
-  document.querySelector("#category-filters").setAttribute("aria-label", language === "de" ? "Nach Kategorie filtern" : "Filter by category");
-  document.querySelector("#cart-trigger").setAttribute("aria-label", language === "de" ? "Warenkorb öffnen" : "Open cart");
+  document.querySelector(".main-nav").setAttribute("aria-label", language === "de" ? "Hauptnavigation" : language === "ru" ? "Главная навигация" : "Main navigation");
+  document.querySelector("#category-filters").setAttribute("aria-label", language === "de" ? "Nach Kategorie filtern" : language === "ru" ? "Фильтр по категориям" : "Filter by category");
+  document.querySelector("#cart-trigger").setAttribute("aria-label", language === "de" ? "Warenkorb öffnen" : language === "ru" ? "Открыть корзину" : "Open cart");
   languageSelect.setAttribute("aria-label", text("languageLabel"));
   currencySelect.setAttribute("aria-label", text("currencyLabel"));
   document.querySelectorAll(".dialog-close").forEach((button) => button.setAttribute("aria-label", text("close")));
-  document.querySelector(".wordmark").setAttribute("aria-label", language === "de" ? "Homiesshop — Startseite" : "Homiesshop — home");
-  document.querySelector(".hero-image").setAttribute("aria-label", language === "de" ? "Vintage-inspiriertes Outfit" : "Vintage-inspired outfit");
+  document.querySelector(".wordmark").setAttribute("aria-label", language === "de" ? "Homiesshop — Startseite" : language === "ru" ? "Homiesshop — главная" : "Homiesshop — home");
+  document.querySelector(".hero-image").setAttribute("aria-label", language === "de" ? "Vintage-inspiriertes Outfit" : language === "ru" ? "Винтажный образ" : "Vintage-inspired outfit");
   document.querySelector("#sort-products").setAttribute("aria-label", text("sortLabel"));
   document.querySelector("#product-search").setAttribute("aria-label", text("searchLabel"));
-  document.querySelector("#delivery").setAttribute("aria-label", language === "de" ? "So funktioniert die Bestellung" : "How ordering works");
+  document.querySelector("#delivery").setAttribute("aria-label", language === "de" ? "So funktioniert die Bestellung" : language === "ru" ? "Как оформить заказ" : "How ordering works");
   languageSelect.value = language;
   currencySelect.value = currency;
 }
 
 function renderProducts() {
-  const query = searchInput.value.trim().toLocaleLowerCase(language === "de" ? "de" : "en");
+  const query = searchInput.value.trim().toLocaleLowerCase(language === "de" ? "de" : language === "ru" ? "ru" : "en");
   document.querySelector("#all-count").textContent = String(PRODUCTS.length).padStart(2, "0");
   const products = PRODUCTS
     .filter((product) => activeCategory === "all" || product.category === activeCategory)
-    .filter((product) => `${product.name.en} ${product.name.de} ${product.categoryLabel.en} ${product.categoryLabel.de}`.toLocaleLowerCase().includes(query))
+    .filter((product) => `${localized(product.name)} ${localized(product.categoryLabel)} ${localized(product.description)}`.toLocaleLowerCase().includes(query))
     .sort((first, second) => {
       if (sortSelect.value === "price-asc") return first.priceEur - second.priceEur;
       if (sortSelect.value === "price-desc") return second.priceEur - first.priceEur;
